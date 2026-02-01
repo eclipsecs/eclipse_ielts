@@ -199,10 +199,34 @@ const HomePage: React.FC<HomePageProps> = ({
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          {/* Passage 1 Card */}
+          {/* Passage 1 Card - Happy Book */}
           <button onClick={onGoPassage1} className={`group relative p-8 rounded-[40px] border text-left transition-all duration-500 hover:-translate-y-3 ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] hover:border-[#F15A24]' : 'bg-white border-slate-200 hover:border-slate-400 shadow-lg hover:shadow-xl'}`}>
             <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all duration-500 group-hover:scale-110 ${isDarkMode ? 'bg-[#252525]' : 'bg-slate-100'}`}>
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={isDarkMode ? "#F15A24" : "#1D1D4B"} strokeWidth="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              {/* Happy Cartoon Book */}
+              <svg width="48" height="48" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                {/* Book cover - left */}
+                <path d="M6 16C6 12.6863 8.68629 10 12 10H28V54C28 56.2091 26.2091 58 24 58H12C8.68629 58 6 55.3137 6 52V16Z" fill="#4DB6AC"/>
+                {/* Book cover - right */}
+                <path d="M58 16C58 12.6863 55.3137 10 52 10H36V54C36 56.2091 37.7909 58 40 58H52C55.3137 58 58 55.3137 58 52V16Z" fill="#FF8A65"/>
+                {/* Book spine */}
+                <rect x="31" y="10" width="2" height="48" fill="#5D4037"/>
+                {/* Happy eyes on book */}
+                <ellipse cx="24" cy="28" rx="3" ry="4" fill="white"/>
+                <ellipse cx="40" cy="28" rx="3" ry="4" fill="white"/>
+                <circle cx="24" cy="29" r="2" fill="#333"/>
+                <circle cx="40" cy="29" r="2" fill="#333"/>
+                {/* Sparkle in eyes */}
+                <circle cx="25" cy="28" r="0.8" fill="white"/>
+                <circle cx="41" cy="28" r="0.8" fill="white"/>
+                {/* Happy smile */}
+                <path d="M22 42C26 48 38 48 42 42" stroke="#333" strokeWidth="2" strokeLinecap="round" fill="none"/>
+                {/* Blush on book */}
+                <ellipse cx="14" cy="40" rx="3" ry="2" fill="#FFAB91" opacity="0.5"/>
+                <ellipse cx="50" cy="40" rx="3" ry="2" fill="#FFAB91" opacity="0.5"/>
+                {/* Page lines */}
+                <line x1="10" y1="52" x2="20" y2="52" stroke="white" strokeWidth="2" strokeLinecap="round" opacity="0.5"/>
+                <line x1="44" y1="52" x2="54" y2="52" stroke="#FFE0B2" strokeWidth="2" strokeLinecap="round" opacity="0.5"/>
+              </svg>
             </div>
             <div className="mb-2">
               <span className={`text-[11px] font-black uppercase tracking-[0.2em] ${isDarkMode ? 'text-[#b0b0b0]' : 'opacity-40'}`}>PASSAGE</span>
@@ -212,10 +236,36 @@ const HomePage: React.FC<HomePageProps> = ({
             <div className={`inline-flex items-center gap-2 font-black text-[10px] uppercase tracking-widest transition-colors ${isDarkMode ? 'text-[#F15A24]' : 'text-[#1D1D4B] group-hover:text-[#F15A24]'}`}>View passages <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
           </button>
 
-          {/* Passage 2 Card */}
+          {/* Passage 2 Card - Starting to Sweat */}
           <button onClick={onGoPassage2} className={`group relative p-8 rounded-[40px] border text-left transition-all duration-500 hover:-translate-y-3 ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] hover:border-[#F15A24]' : 'bg-white border-slate-200 hover:border-slate-400 shadow-lg hover:shadow-xl'}`}>
             <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all duration-500 group-hover:scale-110 ${isDarkMode ? 'bg-[#252525]' : 'bg-slate-100'}`}>
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={isDarkMode ? "#F15A24" : "#1D1D4B"} strokeWidth="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              {/* Cartoon Book Starting to Sweat */}
+              <svg width="48" height="48" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                {/* Book cover - left */}
+                <path d="M6 16C6 12.6863 8.68629 10 12 10H28V54C28 56.2091 26.2091 58 24 58H12C8.68629 58 6 55.3137 6 52V16Z" fill="#7986CB"/>
+                {/* Book cover - right */}
+                <path d="M58 16C58 12.6863 55.3137 10 52 10H36V54C36 56.2091 37.7909 58 40 58H52C55.3137 58 58 55.3137 58 52V16Z" fill="#4DD0E1"/>
+                {/* Book spine */}
+                <rect x="31" y="10" width="2" height="48" fill="#5D4037"/>
+                {/* Worried eyes on book */}
+                <ellipse cx="24" cy="28" rx="3" ry="4" fill="white"/>
+                <ellipse cx="40" cy="28" rx="3" ry="4" fill="white"/>
+                <circle cx="24" cy="29" r="2" fill="#333"/>
+                <circle cx="40" cy="29" r="2" fill="#333"/>
+                {/* Worried eyebrows on book */}
+                <path d="M20 23L24 24" stroke="#5D4037" strokeWidth="1.5" strokeLinecap="round"/>
+                <path d="M44 23L40 24" stroke="#5D4037" strokeWidth="1.5" strokeLinecap="round"/>
+                {/* Uneasy mouth */}
+                <path d="M26 44C28 42 36 42 38 44" stroke="#333" strokeWidth="2" strokeLinecap="round" fill="none"/>
+                {/* Single sweat drop */}
+                <path d="M52 16C52 13 54 11 56 13C58 15 56 17 54 17C52 17 52 16 52 16" fill="#4FC3F7"/>
+                {/* Blush on book */}
+                <ellipse cx="14" cy="40" rx="3" ry="2" fill="#FFAB91" opacity="0.5"/>
+                <ellipse cx="50" cy="40" rx="3" ry="2" fill="#FFAB91" opacity="0.5"/>
+                {/* Wavy stress lines */}
+                <path d="M4 8C2 6 6 4 8 6" stroke="#7986CB" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.5"/>
+                <path d="M60 8C62 6 58 4 56 6" stroke="#4DD0E1" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.5"/>
+              </svg>
             </div>
             <div className="mb-2">
               <span className={`text-[11px] font-black uppercase tracking-[0.2em] ${isDarkMode ? 'text-[#b0b0b0]' : 'opacity-40'}`}>PASSAGE</span>
@@ -225,10 +275,40 @@ const HomePage: React.FC<HomePageProps> = ({
             <div className={`inline-flex items-center gap-2 font-black text-[10px] uppercase tracking-widest transition-colors ${isDarkMode ? 'text-[#F15A24]' : 'text-[#1D1D4B] group-hover:text-[#F15A24]'}`}>View passages <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
           </button>
 
-          {/* Passage 3 Card */}
+          {/* Passage 3 Card - Sweating */}
           <button onClick={onGoPassage3} className={`group relative p-8 rounded-[40px] border text-left transition-all duration-500 hover:-translate-y-3 ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] hover:border-[#F15A24]' : 'bg-white border-slate-200 hover:border-slate-400 shadow-lg hover:shadow-xl'}`}>
             <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all duration-500 group-hover:scale-110 ${isDarkMode ? 'bg-[#252525]' : 'bg-slate-100'}`}>
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={isDarkMode ? "#F15A24" : "#1D1D4B"} strokeWidth="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              {/* Cartoon Book Sweating */}
+              <svg width="48" height="48" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                {/* Book cover - left */}
+                <path d="M6 16C6 12.6863 8.68629 10 12 10H28V54C28 56.2091 26.2091 58 24 58H12C8.68629 58 6 55.3137 6 52V16Z" fill="#AED581"/>
+                {/* Book cover - right */}
+                <path d="M58 16C58 12.6863 55.3137 10 52 10H36V54C36 56.2091 37.7909 58 40 58H52C55.3137 58 58 55.3137 58 52V16Z" fill="#FFB74D"/>
+                {/* Book spine */}
+                <rect x="31" y="10" width="2" height="48" fill="#5D4037"/>
+                {/* Stressed eyes on book */}
+                <ellipse cx="24" cy="28" rx="3" ry="4" fill="white"/>
+                <ellipse cx="40" cy="28" rx="3" ry="4" fill="white"/>
+                <circle cx="24" cy="29" r="2" fill="#333"/>
+                <circle cx="40" cy="29" r="2" fill="#333"/>
+                {/* Very worried eyebrows on book */}
+                <path d="M20 23L24 24" stroke="#5D4037" strokeWidth="1.5" strokeLinecap="round"/>
+                <path d="M44 23L40 24" stroke="#5D4037" strokeWidth="1.5" strokeLinecap="round"/>
+                {/* Worried mouth */}
+                <path d="M28 44C30 42 34 42 36 44" stroke="#333" strokeWidth="2" strokeLinecap="round" fill="none"/>
+                {/* Multiple sweat drops */}
+                <path d="M54 14C54 11 56 9 58 11C60 13 58 15 56 15C54 15 54 14 54 14" fill="#4FC3F7"/>
+                <path d="M8 20C8 17 10 15 12 17C14 19 12 21 10 21C8 21 8 20 8 20" fill="#4FC3F7"/>
+                <path d="M32 2C32 0 33 -2 35 -1C37 0 36 2 34 2C32 2 32 0 32 2" fill="#4FC3F7"/>
+                {/* Blush on book */}
+                <ellipse cx="14" cy="40" rx="3" ry="2" fill="#FFAB91" opacity="0.6"/>
+                <ellipse cx="50" cy="40" rx="3" ry="2" fill="#FFAB91" opacity="0.6"/>
+                {/* Stress lines */}
+                <path d="M2 6C0 4 4 2 6 4" stroke="#AED581" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.5"/>
+                <path d="M62 6C64 4 60 2 58 4" stroke="#FFB74D" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.5"/>
+                <path d="M2 12C0 10 4 8 6 10" stroke="#AED581" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.5"/>
+                <path d="M62 12C64 10 60 8 58 10" stroke="#FFB74D" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.5"/>
+              </svg>
             </div>
             <div className="mb-2">
               <span className={`text-[11px] font-black uppercase tracking-[0.2em] ${isDarkMode ? 'text-[#b0b0b0]' : 'opacity-40'}`}>PASSAGE</span>
