@@ -11,6 +11,7 @@ interface HomePageProps {
   onGoPassage1: () => void;
   onGoPassage2: () => void;
   onGoPassage3: () => void;
+  initialView?: HomeView;
 }
 
 type HomeView = 'modalities' | 'reading-modalities' | 'reading' | 'listening' | 'full';
@@ -22,9 +23,10 @@ const HomePage: React.FC<HomePageProps> = ({
   onGoRoadmap,
   onGoPassage1,
   onGoPassage2,
-  onGoPassage3
+  onGoPassage3,
+  initialView
 }) => {
-  const [currentView, setCurrentView] = useState<HomeView>('modalities');
+  const [currentView, setCurrentView] = useState<HomeView>(initialView || 'modalities');
   const isDarkMode = theme === 'dark';
 
   const handleBack = () => {
@@ -39,44 +41,44 @@ const HomePage: React.FC<HomePageProps> = ({
     <div className="flex flex-wrap justify-center gap-8 mt-6 animate-in fade-in slide-in-from-bottom-8 duration-700 max-w-6xl mx-auto">
       <button onClick={() => setCurrentView('reading-modalities')} className={`group relative p-12 rounded-[52px] border text-left transition-all duration-500 hover:-translate-y-3 w-80 ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] hover:border-[#F15A24] hover:shadow-2xl hover:shadow-[#F15A24]/10' : 'bg-white border-slate-200 hover:border-slate-400 shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.1)]'}`}>
         <div className={`w-24 h-24 rounded-[28px] flex items-center justify-center mb-8 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 ${isDarkMode ? 'bg-[#252525]' : 'bg-[#F8FAFC]'}`}>
-          {/* Character Reading Book - Cute Cartoon */}
+          {/* Modern Cartoon Reading Icon */}
           <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            {/* Open book */}
-            <path d="M8 30C8 27.7909 9.79086 26 12 26H28V52C28 54.2091 26.2091 56 24 56H12C9.79086 56 8 54.2091 8 52V30Z" fill={isDarkMode ? "#4a4a4a" : "#FFE5D9"}/>
-            <path d="M56 30C56 27.7909 54.2091 26 52 26H36V52C36 54.2091 37.7909 56 40 56H52C54.2091 56 56 54.2091 56 52V30Z" fill={isDarkMode ? "#3a3a3a" : "#FFD93D"}/>
-            {/* Book spine */}
-            <path d="M32 26V56" stroke={isDarkMode ? "#F15A24" : "#FF6B6B"} strokeWidth="2"/>
-            {/* Character body */}
-            <ellipse cx="32" cy="18" rx="14" ry="12" fill={isDarkMode ? "#4a4a4a" : "#FF9F43"}/>
-            {/* Character face */}
-            <circle cx="27" cy="16" r="4" fill="white"/>
-            <circle cx="37" cy="16" r="4" fill="white"/>
-            <circle cx="27" cy="16" r="2" fill={isDarkMode ? "#F15A24" : "#2D3436"}/>
-            <circle cx="37" cy="16" r="2" fill={isDarkMode ? "#F15A24" : "#2D3436"}/>
-            {/* Eye sparkles */}
-            <circle cx="28" cy="15" r="1" fill="white"/>
-            <circle cx="38" cy="15" r="1" fill="white"/>
-            {/* Cute smile */}
-            <path d="M29 22C31 24 33 24 35 22" stroke={isDarkMode ? "#F15A24" : "#2D3436"} strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-            {/* Rosy cheeks */}
-            <circle cx="23" cy="20" r="3" fill={isDarkMode ? "#F15A24" : "#FFB8B8"} opacity="0.6"/>
-            <circle cx="41" cy="20" r="3" fill={isDarkMode ? "#F15A24" : "#FFB8B8"} opacity="0.6"/>
-            {/* Hair tuft */}
-            <path d="M32 6C30 8 30 10 32 12" stroke={isDarkMode ? "#555" : "#2D3436"} strokeWidth="2" strokeLinecap="round" fill="none"/>
-            {/* Reading glasses */}
-            <circle cx="27" cy="16" r="5" stroke={isDarkMode ? "#666" : "#2D3436"} strokeWidth="1.5" fill="none"/>
-            <circle cx="37" cy="16" r="5" stroke={isDarkMode ? "#666" : "#2D3436"} strokeWidth="1.5" fill="none"/>
-            <path d="M32 16H32" stroke={isDarkMode ? "#666" : "#2D3436"} strokeWidth="1.5"/>
-            {/* Text lines on book */}
-            <line x1="13" y1="34" x2="22" y2="34" stroke={isDarkMode ? "#666" : "#CBD5E1"} strokeWidth="2" strokeLinecap="round"/>
-            <line x1="13" y1="40" x2="24" y2="40" stroke={isDarkMode ? "#666" : "#CBD5E1"} strokeWidth="2" strokeLinecap="round"/>
-            <line x1="13" y1="46" x2="20" y2="46" stroke={isDarkMode ? "#666" : "#CBD5E1"} strokeWidth="2" strokeLinecap="round"/>
-            <line x1="40" y1="34" x2="49" y2="34" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-            <line x1="40" y1="40" x2="48" y2="40" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-            <line x1="40" y1="46" x2="46" y2="46" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-            {/* Excitement marks */}
-            <text x="16" y="20" fontSize="8" fill={isDarkMode ? "#F15A24" : "#FF6B6B"} fontWeight="bold">!</text>
-            <text x="50" y="18" fontSize="8" fill={isDarkMode ? "#F15A24" : "#FF6B6B"} fontWeight="bold">!</text>
+            {/* Book base */}
+            <path d="M8 36C8 33.7909 9.79086 32 12 32H28V52C28 54.2091 26.2091 56 24 56H12C9.79086 56 8 54.2091 8 52V36Z" fill="#FF8A65"/>
+            <path d="M56 36C56 33.7909 54.2091 32 52 32H36V52C36 54.2091 37.7909 56 40 56H52C54.2091 56 56 54.2091 56 52V36Z" fill="#4DB6AC"/>
+            {/* Book pages */}
+            <path d="M32 32V56" stroke="#fff" strokeWidth="2"/>
+            {/* Character head */}
+            <circle cx="32" cy="20" r="13" fill="#FFD54F"/>
+            {/* Hair */}
+            <path d="M20 18C20 12 25 8 32 8C39 8 44 12 44 18" stroke="#5D4037" strokeWidth="3" strokeLinecap="round" fill="none"/>
+            <path d="M32 8L30 4M32 8L34 4M32 8V5" stroke="#5D4037" strokeWidth="2" strokeLinecap="round"/>
+            {/* Eyes */}
+            <ellipse cx="27" cy="19" rx="3" ry="4" fill="#fff"/>
+            <ellipse cx="37" cy="19" rx="3" ry="4" fill="#fff"/>
+            <circle cx="27" cy="19" r="2" fill="#333"/>
+            <circle cx="37" cy="19" r="2" fill="#333"/>
+            <circle cx="28" cy="18" r="0.8" fill="#fff"/>
+            <circle cx="38" cy="18" r="0.8" fill="#fff"/>
+            {/* Smile */}
+            <path d="M28 26C30 28 34 28 36 26" stroke="#333" strokeWidth="2" strokeLinecap="round" fill="none"/>
+            {/* Blush */}
+            <ellipse cx="22" cy="24" rx="3" ry="2" fill="#FFAB91" opacity="0.7"/>
+            <ellipse cx="42" cy="24" rx="3" ry="2" fill="#FFAB91" opacity="0.7"/>
+            {/* Glasses */}
+            <circle cx="27" cy="19" r="5" stroke="#333" strokeWidth="1.5" fill="none"/>
+            <circle cx="37" cy="19" r="5" stroke="#333" strokeWidth="1.5" fill="none"/>
+            <line x1="32" y1="19" x2="32" y2="19" stroke="#333" strokeWidth="2"/>
+            {/* Book text lines */}
+            <line x1="12" y1="38" x2="22" y2="38" stroke="#fff" strokeWidth="2" strokeLinecap="round"/>
+            <line x1="12" y1="44" x2="24" y2="44" stroke="#fff" strokeWidth="2" strokeLinecap="round"/>
+            <line x1="12" y1="50" x2="20" y2="50" stroke="#fff" strokeWidth="2" strokeLinecap="round"/>
+            <line x1="42" y1="38" x2="52" y2="38" stroke="#FFE0B2" strokeWidth="2" strokeLinecap="round"/>
+            <line x1="42" y1="44" x2="50" y2="44" stroke="#FFE0B2" strokeWidth="2" strokeLinecap="round"/>
+            <line x1="42" y1="50" x2="48" y2="50" stroke="#FFE0B2" strokeWidth="2" strokeLinecap="round"/>
+            {/* Sparkle stars */}
+            <path d="M14 24L15 26L17 26L15.5 27.5L16 29.5L14 28L12 29.5L12.5 27.5L11 26L13 26Z" fill="#FFD54F"/>
+            <path d="M50 20L51 22L53 22L51.5 23.5L52 25.5L50 24L48 25.5L48.5 23.5L47 22L49 22Z" fill="#4DB6AC"/>
           </svg>
         </div>
         <h3 className={`text-3xl font-black mb-3 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Reading</h3>
@@ -86,44 +88,40 @@ const HomePage: React.FC<HomePageProps> = ({
 
       <button onClick={() => setCurrentView('listening')} className={`group relative p-12 rounded-[52px] border text-left transition-all duration-500 hover:-translate-y-3 w-80 ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] hover:border-[#F15A24] hover:shadow-2xl hover:shadow-[#F15A24]/10' : 'bg-white border-slate-200 hover:border-slate-400 shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.1)]'}`}>
         <div className={`w-24 h-24 rounded-[28px] flex items-center justify-center mb-8 transition-all duration-500 group-hover:scale-110 ${isDarkMode ? 'bg-[#252525]' : 'bg-[#F8FAFC]'}`}>
-          {/* Character with Headphones - Cute Cartoon */}
+          {/* Modern Cartoon Listening Icon */}
           <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* Headphone band */}
+            <path d="M10 28C10 14 20 6 32 6C44 6 54 14 54 28" stroke="#7E57C2" strokeWidth="5" strokeLinecap="round" fill="none"/>
+            {/* Left ear cup */}
+            <rect x="3" y="18" width="14" height="22" rx="7" fill="#7E57C2"/>
+            <rect x="6" y="22" width="8" height="14" rx="4" fill="#EDE7F6"/>
+            {/* Right ear cup */}
+            <rect x="47" y="18" width="14" height="22" rx="7" fill="#7E57C2"/>
+            <rect x="50" y="22" width="8" height="14" rx="4" fill="#EDE7F6"/>
             {/* Character head */}
-            <circle cx="32" cy="26" r="14" fill={isDarkMode ? "#4a4a4a" : "#FF9F43"}/>
-            {/* Hair */}
-            <path d="M20 22C20 18 24 14 32 14C40 14 44 18 44 22" stroke={isDarkMode ? "#555" : "#2D3436"} strokeWidth="3" strokeLinecap="round" fill="none"/>
-            {/* Headphone band - lifted up */}
-            <path d="M14 26C14 14 20 6 32 6C44 6 50 14 50 26" stroke={isDarkMode ? "#F15A24" : "#5F27CD"} strokeWidth="5" strokeLinecap="round"/>
-            {/* Left ear cup - lifted up */}
-            <rect x="6" y="14" width="12" height="20" rx="6" fill={isDarkMode ? "#3a3a3a" : "#5F27CD"}/>
-            <rect x="9" y="18" width="6" height="12" rx="3" fill={isDarkMode ? "#2a2a2a" : "#FFF"}/>
-            {/* Right ear cup - lifted up */}
-            <rect x="46" y="14" width="12" height="20" rx="6" fill={isDarkMode ? "#3a3a3a" : "#5F27CD"}/>
-            <rect x="49" y="18" width="6" height="12" rx="3" fill={isDarkMode ? "#2a2a2a" : "#FFF"}/>
-            {/* Character face - moved down */}
-            <circle cx="27" cy="24" r="3.5" fill="white"/>
-            <circle cx="37" cy="24" r="3.5" fill="white"/>
-            <circle cx="27" cy="24" r="1.8" fill={isDarkMode ? "#F15A24" : "#2D3436"}/>
-            <circle cx="37" cy="24" r="1.8" fill={isDarkMode ? "#F15A24" : "#2D3436"}/>
-            {/* Eye sparkles */}
-            <circle cx="28" cy="23" r="0.8" fill="white"/>
-            <circle cx="38" cy="23" r="0.8" fill="white"/>
-            {/* Happy closed eyes/eyebrows - enjoying music */}
-            <path d="M24 20Q27 18 30 20" stroke={isDarkMode ? "#666" : "#2D3436"} strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-            <path d="M34 20Q37 18 40 20" stroke={isDarkMode ? "#666" : "#2D3436"} strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+            <circle cx="32" cy="32" r="14" fill="#FFCC80"/>
+            {/* Hair - fun spikes */}
+            <path d="M20 26C20 20 24 16 32 16C40 16 44 20 44 26" stroke="#4E342E" strokeWidth="3" strokeLinecap="round" fill="none"/>
+            <path d="M26 14L28 10M32 12L34 8M38 14L40 10" stroke="#4E342E" strokeWidth="2" strokeLinecap="round"/>
+            {/* Closed happy eyes */}
+            <path d="M24 30Q27 27 30 30" stroke="#333" strokeWidth="2" strokeLinecap="round" fill="none"/>
+            <path d="M34 30Q37 27 40 30" stroke="#333" strokeWidth="2" strokeLinecap="round" fill="none"/>
             {/* Big smile */}
-            <path d="M27 31C30 34 34 34 37 31" stroke={isDarkMode ? "#F15A24" : "#2D3436"} strokeWidth="2" strokeLinecap="round" fill="none"/>
-            {/* Rosy cheeks */}
-            <circle cx="22" cy="28" r="3" fill={isDarkMode ? "#F15A24" : "#FFB8B8"} opacity="0.6"/>
-            <circle cx="42" cy="28" r="3" fill={isDarkMode ? "#F15A24" : "#FFB8B8"} opacity="0.6"/>
-            {/* Musical notes floating */}
-            <path d="M54 4V-2" stroke={isDarkMode ? "#F15A24" : "#FFD93D"} strokeWidth="2" strokeLinecap="round"/>
-            <path d="M50 0C50 -3 54 -5 56 -2C58 1 54 2 52 0" fill={isDarkMode ? "#F15A24" : "#FFD93D"}/>
-            <path d="M10 6V0" stroke={isDarkMode ? "#F15A24" : "#4ECDC4"} strokeWidth="2" strokeLinecap="round"/>
-            <path d="M6 2C6 -1 10 -3 12 0C14 3 10 4 8 2" fill={isDarkMode ? "#F15A24" : "#4ECDC4"}/>
+            <path d="M26 38C29 41 35 41 38 38" stroke="#333" strokeWidth="2" strokeLinecap="round" fill="none"/>
+            {/* Blush */}
+            <ellipse cx="22" cy="35" rx="3" ry="2" fill="#FFAB91" opacity="0.7"/>
+            <ellipse cx="42" cy="35" rx="3" ry="2" fill="#FFAB91" opacity="0.7"/>
+            {/* Musical notes */}
+            <path d="M56 8C56 5 60 3 62 5C64 7 60 8 58 6" fill="#FF7043"/>
+            <path d="M62 4V0" stroke="#FF7043" strokeWidth="2" strokeLinecap="round"/>
+            <path d="M6 10C6 7 10 5 12 7C14 9 10 10 8 8" fill="#26A69A"/>
+            <path d="M10 6V2" stroke="#26A69A" strokeWidth="2" strokeLinecap="round"/>
             {/* Sound waves */}
-            <path d="M0 20C-2 22 -3 25 -1 28" stroke={isDarkMode ? "#F15A24" : "#FF6B6B"} strokeWidth="2" strokeLinecap="round" opacity="0.7"/>
-            <path d="M64 20C66 22 67 25 65 28" stroke={isDarkMode ? "#F15A24" : "#FF6B6B"} strokeWidth="2" strokeLinecap="round" opacity="0.7"/>
+            <path d="M-2 22C-4 24 -5 27 -3 30" stroke="#FF7043" strokeWidth="2" strokeLinecap="round" opacity="0.6"/>
+            <path d="M66 22C68 24 69 27 67 30" stroke="#FF7043" strokeWidth="2" strokeLinecap="round" opacity="0.6"/>
+            {/* Floating dots */}
+            <circle cx="56" cy="14" r="2" fill="#FFEE58"/>
+            <circle cx="8" cy="16" r="2" fill="#4DB6AC"/>
           </svg>
         </div>
         <h3 className={`text-3xl font-black mb-3 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Listening</h3>
@@ -133,44 +131,51 @@ const HomePage: React.FC<HomePageProps> = ({
 
       <button onClick={() => setCurrentView('full')} className={`group relative p-12 rounded-[52px] border text-left transition-all duration-500 hover:-translate-y-3 w-80 ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] hover:border-[#F15A24] hover:shadow-2xl hover:shadow-[#F15A24]/10' : 'bg-white border-slate-200 hover:border-slate-400 shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.1)]'}`}>
         <div className={`w-24 h-24 rounded-[28px] flex items-center justify-center mb-8 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 ${isDarkMode ? 'bg-[#252525]' : 'bg-[#F8FAFC]'}`}>
-          {/* Character Taking Exam - Cute Cartoon */}
+          {/* Modern Cartoon Full Mock Icon */}
           <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
             {/* Exam paper */}
-            <rect x="14" y="12" width="36" height="44" rx="3" fill={isDarkMode ? "#3a3a3a" : "#FFF"} stroke={isDarkMode ? "#4a4a4a" : "#E2E8F0"} strokeWidth="2"/>
-            {/* Paper lines */}
-            <line x1="20" y1="20" x2="44" y2="20" stroke={isDarkMode ? "#555" : "#CBD5E1"} strokeWidth="2" strokeLinecap="round"/>
-            <line x1="20" y1="26" x2="44" y2="26" stroke={isDarkMode ? "#555" : "#CBD5E1"} strokeWidth="2" strokeLinecap="round"/>
-            <line x1="20" y1="32" x2="38" y2="32" stroke={isDarkMode ? "#555" : "#CBD5E1"} strokeWidth="2" strokeLinecap="round"/>
+            <rect x="12" y="10" width="40" height="48" rx="3" fill="#FAFAFA" stroke="#E0E0E0" strokeWidth="2"/>
+            {/* Paper header */}
+            <rect x="12" y="10" width="40" height="10" rx="3" fill="#1E88E5"/>
+            <text x="32" y="17" fontSize="6" textAnchor="middle" fill="white" fontWeight="bold">IELTS CDI</text>
             {/* Questions on paper */}
-            <circle cx="22" cy="42" r="4" fill={isDarkMode ? "#555" : "#E2E8F0"}/>
-            <text x="22" y="45" fontSize="6" textAnchor="middle" fill={isDarkMode ? "#F15A24" : "#1D1D4B"} fontWeight="bold">?</text>
-            <circle cx="36" cy="42" r="4" fill={isDarkMode ? "#555" : "#E2E8F0"}/>
-            <text x="36" y="45" fontSize="6" textAnchor="middle" fill={isDarkMode ? "#F15A24" : "#1D1D4B"} fontWeight="bold">?</text>
-            <circle cx="42" cy="50" r="4" fill={isDarkMode ? "#555" : "#E2E8F0"}/>
-            <text x="42" y="53" fontSize="6" textAnchor="middle" fill={isDarkMode ? "#F15A24" : "#1D1D4B"} fontWeight="bold">!</text>
-            {/* Character peeking from behind paper */}
-            <ellipse cx="32" cy="58" rx="16" ry="8" fill={isDarkMode ? "#4a4a4a" : "#FF9F43"}/>
-            {/* Character face */}
-            <circle cx="26" cy="56" r="3" fill="white"/>
-            <circle cx="38" cy="56" r="3" fill="white"/>
-            <circle cx="26" cy="56" r="1.5" fill={isDarkMode ? "#F15A24" : "#2D3436"}/>
-            <circle cx="38" cy="56" r="1.5" fill={isDarkMode ? "#F15A24" : "#2D3436"}/>
-            {/* Concentrated eyebrows */}
-            <path d="M24 52L28 54" stroke={isDarkMode ? "#666" : "#2D3436"} strokeWidth="1.5" strokeLinecap="round"/>
-            <path d="M40 52L36 54" stroke={isDarkMode ? "#666" : "#2D3436"} strokeWidth="1.5" strokeLinecap="round"/>
-            {/* Nervous small smile */}
-            <path d="M29 60C31 61 33 61 35 60" stroke={isDarkMode ? "#F15A24" : "#2D3436"} strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-            {/* Sweat drop */}
-            <path d="M44 48C44 48 46 50 46 52C46 54 44 56 44 56C44 56 42 54 42 52C42 50 44 48 44 48" fill={isDarkMode ? "#F15A24" : "#4ECDC4"}/>
-            {/* Pencil */}
-            <rect x="50" y="28" width="4" height="24" rx="1" fill={isDarkMode ? "#4a4a4a" : "#FFD93D"} transform="rotate(30 52 40)"/>
-            <rect x="52" y="22" width="2" height="8" rx="1" fill={isDarkMode ? "#555" : "#FFB8B8"} transform="rotate(30 52 40)"/>
-            {/* Pencil tip */}
-            <path d="M51 16L54 14L52 18Z" fill={isDarkMode ? "#F15A24" : "#FF6B6B"} transform="rotate(30 52 40)"/>
-            {/* Clock */}
-            <circle cx="10" cy="10" r="6" fill={isDarkMode ? "#3a3a3a" : "#FFF"} stroke={isDarkMode ? "#F15A24" : "#FF6B6B"} strokeWidth="1.5"/>
-            <line x1="10" y1="10" x2="10" y2="7" stroke={isDarkMode ? "#F15A24" : "#FF6B6B"} strokeWidth="1.5" strokeLinecap="round"/>
-            <line x1="10" y1="10" x2="12" y2="11" stroke={isDarkMode ? "#F15A24" : "#FF6B6B"} strokeWidth="1.5" strokeLinecap="round"/>
+            <circle cx="20" cy="28" r="5" fill="#E3F2FD"/>
+            <text x="20" y="31" fontSize="7" textAnchor="middle" fill="#1565C0" fontWeight="bold">?</text>
+            <circle cx="38" cy="28" r="5" fill="#E3F2FD"/>
+            <text x="38" y="31" fontSize="7" textAnchor="middle" fill="#1565C0" fontWeight="bold">?</text>
+            <circle cx="28" cy="42" r="5" fill="#E3F2FD"/>
+            <text x="28" y="45" fontSize="7" textAnchor="middle" fill="#1565C0" fontWeight="bold">!</text>
+            <circle cx="44" cy="42" r="5" fill="#E3F2FD"/>
+            <text x="44" y="45" fontSize="7" textAnchor="middle" fill="#1565C0" fontWeight="bold">!</text>
+            {/* Answer lines */}
+            <line x1="18" y1="52" x2="46" y2="52" stroke="#BDBDBD" strokeWidth="1" strokeLinecap="round"/>
+            {/* Character peeking from behind */}
+            <circle cx="32" cy="62" r="10" fill="#FFE0B2"/>
+            {/* Character hair */}
+            <path d="M23 58C23 54 26 52 32 52C38 52 41 54 41 58" stroke="#5D4037" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+            {/* Character eyes - looking up */}
+            <ellipse cx="28" cy="60" rx="2.5" ry="3" fill="#fff"/>
+            <ellipse cx="36" cy="60" rx="2.5" ry="3" fill="#fff"/>
+            <circle cx="28" cy="61" r="1.5" fill="#333"/>
+            <circle cx="36" cy="61" r="1.5" fill="#333"/>
+            {/* Worried eyebrows */}
+            <path d="M25 56L28 57" stroke="#5D4037" strokeWidth="1.5" strokeLinecap="round"/>
+            <path d="M39 56L36 57" stroke="#5D4037" strokeWidth="1.5" strokeLinecap="round"/>
+            {/* Small nervous mouth */}
+            <path d="M30 65C32 66 34 66 36 65" stroke="#5D4037" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+            {/* Pencil behind paper */}
+            <rect x="4" y="38" width="4" height="28" rx="1" fill="#FFB300" transform="rotate(25 6 52)"/>
+            <rect x="6" y="30" width="2" height="10" rx="1" fill="#D7CCC8" transform="rotate(25 7 35)"/>
+            <path d="M5.5 23L8 20L10.5 23Z" fill="#FF7043" transform="rotate(25 7 35)"/>
+            {/* Clock with time */}
+            <circle cx="56" cy="12" r="8" fill="#fff" stroke="#EF5350" strokeWidth="2"/>
+            <circle cx="56" cy="12" r="6" fill="none" stroke="#FFCDD2" strokeWidth="1"/>
+            <line x1="56" y1="12" x2="56" y2="8" stroke="#EF5350" strokeWidth="1.5" strokeLinecap="round"/>
+            <line x1="56" y1="12" x2="59" y2="13" stroke="#EF5350" strokeWidth="1.5" strokeLinecap="round"/>
+            {/* Timer dots */}
+            <circle cx="56" cy="6" r="1" fill="#4CAF50"/>
+            <circle cx="54" cy="4" r="0.8" fill="#8BC34A"/>
+            <circle cx="58" cy="4" r="0.8" fill="#8BC34A"/>
           </svg>
         </div>
         <h3 className={`text-3xl font-black mb-3 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Full Mock</h3>
@@ -344,8 +349,14 @@ const HomePage: React.FC<HomePageProps> = ({
         </div>
 
         <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none select-none">
-          <span className={`font-black text-lg tracking-[0.4em] uppercase transition-colors duration-500 ${isDarkMode ? 'text-white' : 'text-[#1D1D4B]'}`}>
-            IELTS CDI
+          <span className={`
+            font-black text-2xl tracking-[0.05em] uppercase
+            transition-all duration-300
+            ${isDarkMode ? 'text-white' : 'text-[#1D1D4B]'}
+            hover:scale-110 hover:-translate-y-1
+            ${isDarkMode ? 'hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.8)]' : 'hover:drop-shadow-[0_0_10px_rgba(29,29,75,0.5)]'}
+          `} style={{ fontFamily: 'Fredoka One, cursive' }}>
+            JAVOKHIRS IELTS
           </span>
         </div>
 
@@ -374,9 +385,15 @@ const HomePage: React.FC<HomePageProps> = ({
         {currentView === 'modalities' && (
           <div className="animate-in fade-in slide-in-from-bottom-8 duration-700">
             <div className="flex flex-col items-center text-center mb-12">
-              <span className={`text-xs font-black uppercase tracking-[0.3em] mb-4 ${isDarkMode ? 'text-[#F15A24]' : 'text-[#1D1D4B]'}`}>Choose Your Path</span>
-              <h1 className={`text-5xl md:text-6xl font-black mb-6 tracking-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>What would you like <br/>to <span className="text-[#F15A24]">practice</span> today?</h1>
-              <p className={`text-lg max-w-2xl leading-relaxed ${isDarkMode ? 'text-[#b0b0b0]' : 'opacity-50'}`}>Select a test modality below to begin your IELTS preparation journey</p>
+              <span className={`inline-flex items-center gap-3 text-sm font-bold uppercase tracking-[0.3em] mb-4 px-5 py-2.5 rounded-full ${isDarkMode ? 'text-[#F15A24] bg-[#F15A24]/10' : 'text-[#1D1D4B] bg-[#1D1D4B]/10'} animate-pulse`} style={{ fontFamily: 'Fredoka, sans-serif' }}>
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L14 9L21 9L15 14L17 21L12 17L7 21L9 14L3 9L10 9L12 2Z" fill="#FFD700" stroke="#FFA000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                Choose Your Path
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L14 9L21 9L15 14L17 21L12 17L7 21L9 14L3 9L10 9L12 2Z" fill="#FFD700" stroke="#FFA000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </span>
+              <h1 className={`text-5xl md:text-6xl font-black mb-6 tracking-tight leading-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`} style={{ fontFamily: 'Fredoka One, cursive' }}>
+                What would you like <br/>to <span className="text-[#F15A24] relative inline-block" style={{ fontFamily: 'Fredoka One, cursive', animation: 'cartoon-bounce 1s ease-in-out infinite' }}>practice<span className="absolute -bottom-2 left-0 right-0 h-3 bg-[#F15A24]/20 rounded-full -z-10"></span></span> today?
+              </h1>
+              <p className={`text-lg max-w-2xl leading-relaxed ${isDarkMode ? 'text-[#b0b0b0]' : 'opacity-60'}`} style={{ fontFamily: 'Fredoka, sans-serif' }}>Select a test modality below to begin your IELTS test <svg className="inline-block w-8 h-8 align-middle animate-bounce" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="32" cy="28" rx="18" ry="22" fill="#F15A24"/><ellipse cx="32" cy="28" rx="14" ry="18" fill="#FF8A65"/><circle cx="32" cy="24" r="8" fill="white" opacity="0.9"/><circle cx="29" cy="23" r="3" fill="#333"/><circle cx="35" cy="23" r="3" fill="#333"/><path d="M28 30Q32 34 36 30" stroke="#333" strokeWidth="2" strokeLinecap="round" fill="none"/><path d="M18 48L32 58L46 48" fill="#FFD700"/><path d="M22 44L32 52L42 44" fill="#FFB300"/><ellipse cx="26" cy="55" rx="8" ry="4" fill="#4DB6AC"/><ellipse cx="38" cy="55" rx="8" ry="4" fill="#4DB6AC"/></svg></p>
             </div>
             {renderModalityCards()}
           </div>

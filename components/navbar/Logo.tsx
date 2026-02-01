@@ -14,7 +14,7 @@ const Logo: React.FC<LogoProps> = ({ className = "h-12", showText = true, theme 
   const primaryColor = isDarkMode ? '#FFFFFF' : '#1D1D4B';
   const accentColor = brandColor;
   const Container = onClick ? 'button' : 'div';
-  const fontStack = '"Inter", "Segoe UI", system-ui, -apple-system, sans-serif';
+  const fontStack = '"Fredoka", "Balsamiq Sans", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif';
 
   return (
     <Container 
@@ -74,24 +74,29 @@ const Logo: React.FC<LogoProps> = ({ className = "h-12", showText = true, theme 
       {showText && (
         <div className="flex flex-col justify-center text-left select-none leading-none">
           <span 
-            className="transition-all duration-300 group-hover:tracking-wide"
+            className="cartoon-logo transition-all duration-300 group-hover:scale-110"
             style={{ 
               color: primaryColor, 
-              fontSize: '1.5rem', 
+              fontSize: '1.75rem', 
               fontFamily: fontStack, 
-              fontWeight: '800', 
-              letterSpacing: '0.01em',
-              textShadow: isDarkMode ? 'none' : '0 1px 2px rgba(0,0,0,0.05)'
+              fontWeight: '700',
+              letterSpacing: '0.02em',
+              textShadow: isDarkMode ? '2px 2px 0 rgba(0,0,0,0.3)' : '2px 2px 0 rgba(241, 90, 36, 0.15)',
+              transform: 'rotate(-1deg)'
             }}
           >
-            Javokhirs
-            <span style={{ color: brandColor, marginLeft: '6px' }}>IELTS</span>
+            JAVOKHIRS <span style={{ color: brandColor }}>IELTS</span>
           </span>
           <div className="flex items-center gap-2 mt-1.5">
-            <div className="h-[2px] w-6 bg-gradient-to-r from-brandColor to-transparent rounded-full"></div>
+            <div className="h-[3px] w-12 bg-gradient-to-r from-brandColor to-transparent rounded-full"></div>
             <span 
-              className="text-[9px] font-semibold uppercase tracking-[0.35em] transition-all duration-300"
-              style={{ color: primaryColor, opacity: 0.5, fontFamily: fontStack }}
+              className="text-[10px] font-bold uppercase tracking-[0.3em] transition-all duration-300"
+              style={{ 
+                color: primaryColor, 
+                opacity: 0.7, 
+                fontFamily: fontStack,
+                textShadow: isDarkMode ? 'none' : '0 1px 2px rgba(0,0,0,0.1)'
+              }}
             >
               Practice Excellence
             </span>

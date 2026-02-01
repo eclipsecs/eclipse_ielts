@@ -25,3 +25,77 @@ body {
   --dm-accent: #F15A24;
   --dm-border: #3a3a3a;
 }
+
+/* Cartoon logo animation */
+@keyframes cartoonBounce {
+  0%, 100% {
+    transform: rotate(-1deg) translateY(0);
+  }
+  50% {
+    transform: rotate(-1deg) translateY(-3px);
+  }
+}
+
+@keyframes subtleWiggle {
+  0%, 100% {
+    transform: rotate(-1deg);
+  }
+  25% {
+    transform: rotate(1deg);
+  }
+  75% {
+    transform: rotate(-2deg);
+  }
+}
+
+.cartoon-logo {
+  animation: cartoonBounce 2s ease-in-out infinite;
+  display: inline-block;
+}
+
+.group:hover .cartoon-logo {
+  animation: subtleWiggle 0.5s ease-in-out infinite;
+}
+
+/* Gradient text animation */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: gradient 3s ease infinite;
+  background-size: 200% auto;
+}
+
+/* Cartoon bounce animation */
+@keyframes cartoonBounce {
+  0%, 100% {
+    transform: scale(1.05) translateY(0) rotate(-2deg);
+  }
+  25% {
+    transform: scale(1.05) translateY(-5px) rotate(2deg);
+  }
+  50% {
+    transform: scale(1.05) translateY(0) rotate(-2deg);
+  }
+  75% {
+    transform: scale(1.05) translateY(-5px) rotate(2deg);
+  }
+}
+
+@keyframes cartoonBounceHover {
+  0%, 100% {
+    transform: scale(1.1) translateY(0);
+  }
+  50% {
+    transform: scale(1.1) translateY(-4px);
+  }
+}

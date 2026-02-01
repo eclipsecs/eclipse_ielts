@@ -102,6 +102,21 @@ const App: React.FC = () => {
     );
   }
 
+  if (view === 'reading-library') {
+    return (
+      <HomePage 
+        theme={state.theme} 
+        onToggleTheme={handleToggleTheme} 
+        onSelectTest={handleSelectTest} 
+        onGoRoadmap={() => setView('roadmap')}
+        onGoPassage1={() => setView('passage1')}
+        onGoPassage2={() => setView('passage2')}
+        onGoPassage3={() => setView('passage3')}
+        initialView="reading-modalities"
+      />
+    );
+  }
+
   if (view === 'passage1') {
     return (
       <Passage1
@@ -109,7 +124,7 @@ const App: React.FC = () => {
         onToggleTheme={handleToggleTheme}
         onSelectTest={handleSelectTest}
         onGoHome={() => setView('home')}
-        onGoBack={() => setView('home')}
+        onGoBack={() => setView('reading-library')}
       />
     );
   }
@@ -121,7 +136,7 @@ const App: React.FC = () => {
         onToggleTheme={handleToggleTheme}
         onSelectTest={handleSelectTest}
         onGoHome={() => setView('home')}
-        onGoBack={() => setView('home')}
+        onGoBack={() => setView('reading-library')}
       />
     );
   }
@@ -133,7 +148,7 @@ const App: React.FC = () => {
         onToggleTheme={handleToggleTheme}
         onSelectTest={handleSelectTest}
         onGoHome={() => setView('home')}
-        onGoBack={() => setView('home')}
+        onGoBack={() => setView('reading-library')}
       />
     );
   }
