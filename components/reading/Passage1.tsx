@@ -28,13 +28,13 @@ const Passage1: React.FC<Passage1Props> = ({ theme, onToggleTheme, onSelectTest,
         </div>
 
         <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none select-none">
-          <span className={`font-black text-sm tracking-[0.4em] uppercase transition-colors duration-500 ${isDarkMode ? 'text-[#F15A24]' : 'text-[#1D1D4B]'}`}>
-            Passage 1
-          </span>
-          <div className={`flex items-center gap-2 mt-0.5 opacity-20 transition-colors duration-500 ${isDarkMode ? 'text-white' : 'text-current'}`}>
-            <div className="h-px w-3 bg-current"></div>
-            <span className="text-[7px] font-bold uppercase tracking-[0.3em]">Reading Library</span>
-            <div className="h-px w-3 bg-current"></div>
+          <div className={`flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r ${isDarkMode ? 'from-[#F15A24]/20 to-[#F15A24]/10 border border-[#F15A24]/30' : 'from-[#1D1D4B]/10 to-[#1D1D4B]/5 border border-[#1D1D4B]/20'} shadow-lg`}>
+            <span className={`font-black text-lg tracking-[0.2em] uppercase transition-colors duration-500 ${isDarkMode ? 'text-[#F15A24]' : 'text-[#1D1D4B]'}`}>
+              Passage 1
+            </span>
+            <svg className={`w-5 h-5 animate-pulse ${isDarkMode ? 'text-yellow-400' : 'text-yellow-500'}`} viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
           </div>
         </div>
 
