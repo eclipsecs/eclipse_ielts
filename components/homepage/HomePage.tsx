@@ -82,8 +82,8 @@ const HomePage: React.FC<HomePageProps> = ({
           </svg>
         </div>
         <h3 className={`text-3xl font-black mb-3 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Reading</h3>
-        <p className={`text-sm leading-relaxed mb-8 transition-colors ${isDarkMode ? 'text-[#b0b0b0]' : 'opacity-50'}`}>Master scanning techniques and academic comprehension.</p>
-        <div className={`inline-flex items-center gap-2 font-black text-xs uppercase tracking-widest transition-colors ${isDarkMode ? 'text-[#F15A24]' : 'text-[#1D1D4B] group-hover:text-[#F15A24]'}`}>Explore Library <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        <p className={`text-sm leading-relaxed mb-8 transition-colors ${isDarkMode ? 'text-[#b0b0b0]' : 'opacity-50'}`}>Academic Reading slot</p>
+        <div className={`inline-flex items-center gap-2 font-black text-xs uppercase tracking-widest transition-colors ${isDarkMode ? 'text-[#F15A24]' : 'text-[#1D1D4B] group-hover:text-[#F15A24]'}`}>See Passages <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
       </button>
 
       <button onClick={() => setCurrentView('listening')} className={`group relative p-12 rounded-[52px] border text-left transition-all duration-500 hover:-translate-y-3 w-80 ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] hover:border-[#F15A24] hover:shadow-2xl hover:shadow-[#F15A24]/10' : 'bg-white border-slate-200 hover:border-slate-400 shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.1)]'}`}>
@@ -125,8 +125,8 @@ const HomePage: React.FC<HomePageProps> = ({
           </svg>
         </div>
         <h3 className={`text-3xl font-black mb-3 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Listening</h3>
-        <p className={`text-sm leading-relaxed mb-8 transition-colors ${isDarkMode ? 'text-[#b0b0b0]' : 'opacity-50'}`}>Sharpen focus with realistic academic scenarios.</p>
-        <div className={`inline-flex items-center gap-2 font-black text-xs uppercase tracking-widest transition-colors ${isDarkMode ? 'text-[#F15A24]' : 'text-[#1D1D4B] group-hover:text-[#F15A24]'}`}>Listen Now <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        <p className={`text-sm leading-relaxed mb-8 transition-colors ${isDarkMode ? 'text-[#b0b0b0]' : 'opacity-50'}`}>Academic Listening slot</p>
+        <div className={`inline-flex items-center gap-2 font-black text-xs uppercase tracking-widest transition-colors ${isDarkMode ? 'text-[#F15A24]' : 'text-[#1D1D4B] group-hover:text-[#F15A24]'}`}>See Sections <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
       </button>
 
       <button onClick={() => setCurrentView('full')} className={`group relative p-12 rounded-[52px] border text-left transition-all duration-500 hover:-translate-y-3 w-80 ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] hover:border-[#F15A24] hover:shadow-2xl hover:shadow-[#F15A24]/10' : 'bg-white border-slate-200 hover:border-slate-400 shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.1)]'}`}>
@@ -179,7 +179,7 @@ const HomePage: React.FC<HomePageProps> = ({
           </svg>
         </div>
         <h3 className={`text-3xl font-black mb-3 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Full Mock</h3>
-        <p className={`text-sm leading-relaxed mb-8 transition-colors ${isDarkMode ? 'text-[#b0b0b0]' : 'opacity-50'}`}>Timed simulations to build exam-day stamina.</p>
+        <p className={`text-sm leading-relaxed mb-8 transition-colors ${isDarkMode ? 'text-[#b0b0b0]' : 'opacity-50'}`}>A simulation of Reading and Listening</p>
         <div className={`inline-flex items-center gap-2 font-black text-xs uppercase tracking-widest transition-colors ${isDarkMode ? 'text-[#F15A24]' : 'text-[#1D1D4B] group-hover:text-[#F15A24]'}`}>Take Exam <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
       </button>
     </div>
@@ -195,7 +195,7 @@ const HomePage: React.FC<HomePageProps> = ({
         <div className="flex flex-col items-center text-center mb-10">
           <div className="flex items-center justify-center gap-4 mb-4">
             <button onClick={handleBack} className={`p-3 rounded-2xl transition-all border shadow-sm ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] text-white hover:border-[#F15A24]' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'}`}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
-            <h2 className="text-3xl font-black uppercase tracking-tight">Reading <span className="text-[#F15A24]">Library</span></h2>
+            <h2 className="text-3xl font-bold uppercase tracking-tight" style={{ fontFamily: 'Fredoka One, cursive' }}>Reading <span className="text-[#F15A24]">Library</span></h2>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
