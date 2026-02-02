@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Theme } from '../../types';
+import { STUDY_MATERIALS, PODCASTS, WEBSITES, BOOKS, RESOURCE_ARTICLES } from '../../data/resources';
 
 interface ResourcesInterfaceProps {
   theme: Theme;
@@ -14,7 +15,7 @@ interface ResourcesInterfaceProps {
   initialResourceView?: ResourceView;
 }
 
-type ResourceView = 'main' | 'study-materials' | 'podcasts' | 'websites' | 'books' | 'articles';
+type ResourceView = 'main' | 'study-materials' | 'podcasts' | 'websites' | 'books' | 'resource-articles';
 
 const ResourcesInterface: React.FC<ResourcesInterfaceProps> = ({
   theme,
@@ -50,7 +51,7 @@ const ResourcesInterface: React.FC<ResourcesInterfaceProps> = ({
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
         {/* Study Materials */}
-        <button onClick={onGoStudyMaterials} className={`group relative p-8 rounded-[40px] border text-left transition-all duration-500 hover:-translate-y-3 ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] hover:border-[#F15A24]' : 'bg-white border-slate-200 hover:border-slate-400 shadow-lg hover:shadow-xl'}`}>
+        <button onClick={() => setCurrentView('study-materials')} className={`group relative p-8 rounded-[40px] border text-left transition-all duration-500 hover:-translate-y-3 ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] hover:border-[#F15A24]' : 'bg-white border-slate-200 hover:border-slate-400 shadow-lg hover:shadow-xl'}`}>
           <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all duration-500 group-hover:scale-110 ${isDarkMode ? 'bg-[#252525]' : 'bg-slate-100'}`}>
             <svg width="48" height="48" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="8" y="10" width="48" height="44" rx="4" fill="#26A69A"/>
@@ -71,7 +72,7 @@ const ResourcesInterface: React.FC<ResourcesInterfaceProps> = ({
         </button>
 
         {/* Podcasts */}
-        <button onClick={onGoPodcasts} className={`group relative p-8 rounded-[40px] border text-left transition-all duration-500 hover:-translate-y-3 ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] hover:border-[#F15A24]' : 'bg-white border-slate-200 hover:border-slate-400 shadow-lg hover:shadow-xl'}`}>
+        <button onClick={() => setCurrentView('podcasts')} className={`group relative p-8 rounded-[40px] border text-left transition-all duration-500 hover:-translate-y-3 ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] hover:border-[#F15A24]' : 'bg-white border-slate-200 hover:border-slate-400 shadow-lg hover:shadow-xl'}`}>
           <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all duration-500 group-hover:scale-110 ${isDarkMode ? 'bg-[#252525]' : 'bg-slate-100'}`}>
             <svg width="48" height="48" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="12" y="20" width="40" height="28" rx="4" fill="#7E57C2"/>
@@ -89,7 +90,7 @@ const ResourcesInterface: React.FC<ResourcesInterfaceProps> = ({
         </button>
 
         {/* Websites */}
-        <button onClick={onGoWebsites} className={`group relative p-8 rounded-[40px] border text-left transition-all duration-500 hover:-translate-y-3 ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] hover:border-[#F15A24]' : 'bg-white border-slate-200 hover:border-slate-400 shadow-lg hover:shadow-xl'}`}>
+        <button onClick={() => setCurrentView('websites')} className={`group relative p-8 rounded-[40px] border text-left transition-all duration-500 hover:-translate-y-3 ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] hover:border-[#F15A24]' : 'bg-white border-slate-200 hover:border-slate-400 shadow-lg hover:shadow-xl'}`}>
           <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all duration-500 group-hover:scale-110 ${isDarkMode ? 'bg-[#252525]' : 'bg-slate-100'}`}>
             <svg width="48" height="48" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="8" y="12" width="48" height="40" rx="4" fill="#1E88E5"/>
@@ -110,7 +111,7 @@ const ResourcesInterface: React.FC<ResourcesInterfaceProps> = ({
         </button>
 
         {/* Books to Read */}
-        <button onClick={onGoBooks} className={`group relative p-8 rounded-[40px] border text-left transition-all duration-500 hover:-translate-y-3 ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] hover:border-[#F15A24]' : 'bg-white border-slate-200 hover:border-slate-400 shadow-lg hover:shadow-xl'}`}>
+        <button onClick={() => setCurrentView('books')} className={`group relative p-8 rounded-[40px] border text-left transition-all duration-500 hover:-translate-y-3 ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] hover:border-[#F15A24]' : 'bg-white border-slate-200 hover:border-slate-400 shadow-lg hover:shadow-xl'}`}>
           <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all duration-500 group-hover:scale-110 ${isDarkMode ? 'bg-[#252525]' : 'bg-slate-100'}`}>
             <svg width="48" height="48" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="6" y="16" width="24" height="36" rx="2" fill="#FF7043"/>
@@ -133,7 +134,7 @@ const ResourcesInterface: React.FC<ResourcesInterfaceProps> = ({
         </button>
 
         {/* Articles */}
-        <button onClick={onGoResourceArticles} className={`group relative p-8 rounded-[40px] border text-left transition-all duration-500 hover:-translate-y-3 ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] hover:border-[#F15A24]' : 'bg-white border-slate-200 hover:border-slate-400 shadow-lg hover:shadow-xl'}`}>
+        <button onClick={() => setCurrentView('resource-articles')} className={`group relative p-8 rounded-[40px] border text-left transition-all duration-500 hover:-translate-y-3 ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] hover:border-[#F15A24]' : 'bg-white border-slate-200 hover:border-slate-400 shadow-lg hover:shadow-xl'}`}>
           <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all duration-500 group-hover:scale-110 ${isDarkMode ? 'bg-[#252525]' : 'bg-slate-100'}`}>
             <svg width="48" height="48" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="10" y="8" width="44" height="48" rx="4" fill="#FAFAFA" stroke="#E0E0E0" strokeWidth="2"/>
@@ -162,7 +163,26 @@ const ResourcesInterface: React.FC<ResourcesInterfaceProps> = ({
           </button>
           <h2 className="text-3xl font-black uppercase tracking-tight">Study <span className="text-[#F15A24]">Materials</span></h2>
         </div>
-        <p className={isDarkMode ? 'text-[#b0b0b0]' : 'opacity-50'}>Notes, exercises, and practice sheets coming soon</p>
+        <p className={isDarkMode ? 'text-[#b0b0b0]' : 'opacity-50'}>Grammar, vocabulary, tips, and practice exercises</p>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        {STUDY_MATERIALS.map((material) => (
+          <div key={material.id} className={`group p-8 rounded-[40px] border transition-all duration-500 hover:-translate-y-2 ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] hover:border-[#F15A24]' : 'bg-white border-slate-200 hover:border-slate-400 shadow-lg hover:shadow-xl'}`}>
+            <div className="flex items-center gap-3 mb-4">
+              <span className={`text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full ${material.difficulty === 'Beginner' ? 'bg-green-100 text-green-700' : material.difficulty === 'Intermediate' ? 'bg-yellow-100 text-yellow-700' : 'bg-red-100 text-red-700'}`}>
+                {material.difficulty}
+              </span>
+              <span className={`text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full ${material.type === 'grammar' ? 'bg-blue-100 text-blue-700' : material.type === 'vocabulary' ? 'bg-purple-100 text-purple-700' : material.type === 'tips' ? 'bg-orange-100 text-orange-700' : 'bg-teal-100 text-teal-700'}`}>
+                {material.type.charAt(0).toUpperCase() + material.type.slice(1)}
+              </span>
+            </div>
+            <h3 className={`text-xl font-black mb-3 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{material.title}</h3>
+            <p className={`text-sm mb-4 ${isDarkMode ? 'text-[#b0b0b0]' : 'text-slate-500'}`}>{material.description}</p>
+            <button className={`px-6 py-3 rounded-full font-bold text-xs uppercase tracking-widest transition-all ${isDarkMode ? 'bg-[#F15A24] text-white hover:opacity-90' : 'bg-[#1D1D4B] text-white hover:opacity-90'}`}>
+              Read More
+            </button>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -176,7 +196,28 @@ const ResourcesInterface: React.FC<ResourcesInterfaceProps> = ({
           </button>
           <h2 className="text-3xl font-black uppercase tracking-tight">IELTS <span className="text-[#F15A24]">Podcasts</span></h2>
         </div>
-        <p className={isDarkMode ? 'text-[#b0b0b0]' : 'opacity-50'}>Listen to IELTS podcasts coming soon</p>
+        <p className={isDarkMode ? 'text-[#b0b0b0]' : 'opacity-50'}>Listen and improve your English skills</p>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        {PODCASTS.map((podcast) => (
+          <a key={podcast.id} href={podcast.url} target="_blank" rel="noopener noreferrer" className={`group p-8 rounded-[40px] border text-left transition-all duration-500 hover:-translate-y-2 ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] hover:border-[#F15A24]' : 'bg-white border-slate-200 hover:border-slate-400 shadow-lg hover:shadow-xl'}`}>
+            <div className="flex items-start justify-between mb-4">
+              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${isDarkMode ? 'bg-[#252525]' : 'bg-slate-100'}`}>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={isDarkMode ? "#F15A24" : "#1D1D4B"} strokeWidth="2">
+                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                  <line x1="12" y1="19" x2="12" y2="23"/>
+                  <line x1="8" y1="23" x2="16" y2="23"/>
+                </svg>
+              </div>
+              <span className={`text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full ${isDarkMode ? 'bg-[#252525] text-[#b0b0b0]' : 'bg-slate-100 text-slate-500'}`}>{podcast.duration}</span>
+            </div>
+            <h3 className={`text-lg font-black mb-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{podcast.title}</h3>
+            <p className={`text-sm mb-2 ${isDarkMode ? 'text-[#b0b0b0]' : 'text-slate-500'}`}>{podcast.description}</p>
+            <p className={`text-xs ${isDarkMode ? 'text-[#F15A24]' : 'text-[#1D1D4B]'}`}>Host: {podcast.host}</p>
+            <div className={`inline-flex items-center gap-2 mt-4 font-black text-xs uppercase tracking-widest transition-colors ${isDarkMode ? 'text-[#F15A24]' : 'text-[#1D1D4B] group-hover:text-[#F15A24]'}`}>Listen Now <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </a>
+        ))}
       </div>
     </div>
   );
@@ -190,7 +231,28 @@ const ResourcesInterface: React.FC<ResourcesInterfaceProps> = ({
           </button>
           <h2 className="text-3xl font-black uppercase tracking-tight">Useful <span className="text-[#F15A24]">Websites</span></h2>
         </div>
-        <p className={isDarkMode ? 'text-[#b0b0b0]' : 'opacity-50'}>External links coming soon</p>
+        <p className={isDarkMode ? 'text-[#b0b0b0]' : 'opacity-50'}>External resources for IELTS preparation</p>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        {WEBSITES.map((website) => (
+          <a key={website.id} href={website.url} target="_blank" rel="noopener noreferrer" className={`group p-8 rounded-[40px] border text-left transition-all duration-500 hover:-translate-y-2 ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] hover:border-[#F15A24]' : 'bg-white border-slate-200 hover:border-slate-400 shadow-lg hover:shadow-xl'}`}>
+            <div className="flex items-start justify-between mb-4">
+              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${isDarkMode ? 'bg-[#252525]' : 'bg-slate-100'}`}>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={isDarkMode ? "#F15A24" : "#1D1D4B"} strokeWidth="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="2" y1="12" x2="22" y2="12"/>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+              </div>
+              <span className={`text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full ${website.category === 'official' ? 'bg-blue-100 text-blue-700' : website.category === 'practice' ? 'bg-green-100 text-green-700' : 'bg-purple-100 text-purple-700'}`}>
+                {website.category.charAt(0).toUpperCase() + website.category.slice(1)}
+              </span>
+            </div>
+            <h3 className={`text-lg font-black mb-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{website.name}</h3>
+            <p className={`text-sm ${isDarkMode ? 'text-[#b0b0b0]' : 'text-slate-500'}`}>{website.description}</p>
+            <div className={`inline-flex items-center gap-2 mt-4 font-black text-xs uppercase tracking-widest transition-colors ${isDarkMode ? 'text-[#F15A24]' : 'text-[#1D1D4B] group-hover:text-[#F15A24]'}`}>Visit Website <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </a>
+        ))}
       </div>
     </div>
   );
@@ -204,7 +266,27 @@ const ResourcesInterface: React.FC<ResourcesInterfaceProps> = ({
           </button>
           <h2 className="text-3xl font-black uppercase tracking-tight">Books to <span className="text-[#F15A24]">Read</span></h2>
         </div>
-        <p className={isDarkMode ? 'text-[#b0b0b0]' : 'opacity-50'}>Recommended books coming soon</p>
+        <p className={isDarkMode ? 'text-[#b0b0b0]' : 'opacity-50'}>Recommended books for IELTS preparation</p>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        {BOOKS.map((book) => (
+          <div key={book.id} className={`group p-8 rounded-[40px] border transition-all duration-500 hover:-translate-y-2 ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] hover:border-[#F15A24]' : 'bg-white border-slate-200 hover:border-slate-400 shadow-lg hover:shadow-xl'}`}>
+            <div className="flex items-center gap-3 mb-4">
+              <span className={`text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full ${isDarkMode ? 'bg-[#252525] text-[#b0b0b0]' : 'bg-slate-100 text-slate-500'}`}>
+                {book.level}
+              </span>
+            </div>
+            <h3 className={`text-xl font-black mb-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{book.title}</h3>
+            <p className={`text-sm mb-2 ${isDarkMode ? 'text-[#F15A24]' : 'text-[#1D1D4B]'}`}>{book.author}</p>
+            <p className={`text-sm mb-4 ${isDarkMode ? 'text-[#b0b0b0]' : 'text-slate-500'}`}>{book.description}</p>
+            {book.amazonUrl && (
+              <a href={book.amazonUrl} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-xs uppercase tracking-widest transition-all ${isDarkMode ? 'bg-[#F15A24] text-white hover:opacity-90' : 'bg-[#1D1D4B] text-white hover:opacity-90'}`}>
+                View on Amazon
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -218,7 +300,26 @@ const ResourcesInterface: React.FC<ResourcesInterfaceProps> = ({
           </button>
           <h2 className="text-3xl font-black uppercase tracking-tight">Resource <span className="text-[#F15A24]">Articles</span></h2>
         </div>
-        <p className={isDarkMode ? 'text-[#b0b0b0]' : 'opacity-50'}>Informative articles coming soon</p>
+        <p className={isDarkMode ? 'text-[#b0b0b0]' : 'opacity-50'}>Tips, strategies, and guides for IELTS success</p>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        {RESOURCE_ARTICLES.map((article) => (
+          <div key={article.id} className={`group p-8 rounded-[40px] border transition-all duration-500 hover:-translate-y-2 ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] hover:border-[#F15A24]' : 'bg-white border-slate-200 hover:border-slate-400 shadow-lg hover:shadow-xl'}`}>
+            <div className="flex items-center gap-3 mb-4">
+              <span className={`text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full ${article.category === 'tips' ? 'bg-orange-100 text-orange-700' : article.category === 'strategies' ? 'bg-blue-100 text-blue-700' : 'bg-purple-100 text-purple-700'}`}>
+                {article.category.charAt(0).toUpperCase() + article.category.slice(1)}
+              </span>
+              <span className={`text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full ${isDarkMode ? 'bg-[#252525] text-[#b0b0b0]' : 'bg-slate-100 text-slate-500'}`}>
+                {article.readTime} min read
+              </span>
+            </div>
+            <h3 className={`text-xl font-black mb-3 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{article.title}</h3>
+            <p className={`text-sm mb-4 ${isDarkMode ? 'text-[#b0b0b0]' : 'text-slate-500'}`}>{article.description}</p>
+            <button className={`px-6 py-3 rounded-full font-bold text-xs uppercase tracking-widest transition-all ${isDarkMode ? 'bg-[#F15A24] text-white hover:opacity-90' : 'bg-[#1D1D4B] text-white hover:opacity-90'}`}>
+              Read Article
+            </button>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -274,7 +375,7 @@ const ResourcesInterface: React.FC<ResourcesInterfaceProps> = ({
         {currentView === 'podcasts' && renderPodcastsView()}
         {currentView === 'websites' && renderWebsitesView()}
         {currentView === 'books' && renderBooksView()}
-        {currentView === 'articles' && renderResourceArticlesView()}
+        {currentView === 'resource-articles' && renderResourceArticlesView()}
       </main>
     </div>
   );

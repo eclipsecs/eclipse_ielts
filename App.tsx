@@ -212,7 +212,7 @@ const App: React.FC = () => {
         onGoPodcasts={() => setView('podcasts')}
         onGoWebsites={() => setView('websites')}
         onGoBooks={() => setView('books')}
-        onGoResourceArticles={() => setView('resource-articles')}
+        onGoResourceArticles={() => setView('articles')}
         initialResourceView="articles"
       />
     );
