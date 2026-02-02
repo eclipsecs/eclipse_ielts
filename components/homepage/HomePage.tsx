@@ -653,6 +653,7 @@ const HomePage: React.FC<HomePageProps> = ({
         {currentView === 'reading' && renderReadingTests()}
         {currentView === 'listening' && renderListeningTests()}
         {currentView === 'full' && renderFullMockTests()}
+        {currentView === 'resources' && renderResourcesView()}
       </main>
     </div>
   );

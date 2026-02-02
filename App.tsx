@@ -102,6 +102,9 @@ const App: React.FC = () => {
         onGoArticle={() => {
           setView('article');
         }}
+        onGoResources={() => {
+          setView('resources');
+        }}
       />
     );
   }
@@ -114,6 +117,23 @@ const App: React.FC = () => {
         onGoHome={() => {
           setView('home');
         }}
+      />
+    );
+  }
+
+  if (view === 'resources') {
+    return (
+      <HomePage
+        theme={state.theme}
+        onToggleTheme={handleToggleTheme}
+        onSelectTest={handleSelectTest}
+        onGoRoadmap={() => setView('roadmap')}
+        onGoPassage1={() => setView('passage1')}
+        onGoPassage2={() => setView('passage2')}
+        onGoPassage3={() => setView('passage3')}
+        onGoArticle={() => setView('article')}
+        onGoResources={() => setView('resources')}
+        initialView="resources"
       />
     );
   }
