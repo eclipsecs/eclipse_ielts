@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Theme, TestCategory, TestMeta } from '../../types';
 import { AVAILABLE_TESTS } from '../../data/tests';
 
@@ -29,7 +29,22 @@ const HomePage: React.FC<HomePageProps> = ({
   initialView
 }) => {
   const [currentView, setCurrentView] = useState<HomeView>(initialView || 'modalities');
+  const [uzbekistanTime, setUzbekistanTime] = useState<string>('');
   const isDarkMode = theme === 'dark';
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const uzTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Samarkand' }));
+      const hours = uzTime.getHours();
+      const minutes = uzTime.getMinutes();
+      setUzbekistanTime(`${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`);
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleBack = () => {
     setCurrentView('modalities');
@@ -497,6 +512,15 @@ const HomePage: React.FC<HomePageProps> = ({
               </svg>
             )}
           </button>
+          <div className={`relative flex items-center px-5 py-2.5 rounded-2xl transition-all duration-300 ${isDarkMode ? 'bg-gradient-to-br from-white/10 to-white/5 border border-white/10 shadow-lg shadow-black/20' : 'bg-gradient-to-br from-slate-100 to-slate-50 border border-slate-200 shadow-inner'}`}>
+            <div className={`text-lg font-mono font-bold ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+              {uzbekistanTime}
+            </div>
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 flex flex-col gap-1">
+              <div className={`w-1 h-1 rounded-full ${isDarkMode ? 'bg-white/30' : 'bg-slate-300'}`}></div>
+              <div className={`w-1 h-1 rounded-full ${isDarkMode ? 'bg-white/20' : 'bg-slate-200'}`}></div>
+            </div>
+          </div>
         </div>
       </nav>
 

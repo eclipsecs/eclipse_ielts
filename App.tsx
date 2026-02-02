@@ -285,7 +285,8 @@ const App: React.FC = () => {
         onFinish={handleFinish} 
         theme={state.theme} 
         onToggleTheme={handleToggleTheme} 
-        onGoHome={handleGoHome} 
+        onGoHome={handleGoHome}
+        useClock={false}
       />
       
       <main className="flex-1 overflow-hidden">

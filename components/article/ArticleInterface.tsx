@@ -464,6 +464,7 @@ const ArticleInterface: React.FC<ArticleInterfaceProps> = ({
         theme={theme}
         onToggleTheme={onToggleTheme}
         onGoHome={onGoHome}
+        showFinishButton={false}
       />
 
       <main className="flex-1 overflow-auto">

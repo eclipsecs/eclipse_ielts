@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Theme } from '../../types';
 
 interface HeaderProps {
@@ -7,14 +7,27 @@ interface HeaderProps {
   theme: Theme;
   onToggleTheme: () => void;
   onGoHome?: () => void;
+  showFinishButton?: boolean;
+  useClock?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ timeRemaining, onFinish, theme, onToggleTheme, onGoHome }) => {
-  const formatTime = (seconds: number) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-  };
+const Header: React.FC<HeaderProps> = ({ timeRemaining, onFinish, theme, onToggleTheme, onGoHome, showFinishButton = true, useClock = true }) => {
+  const [uzbekistanTime, setUzbekistanTime] = useState<string>('');
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      // Uzbekistan is UTC+5, no daylight saving time
+      const uzTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Samarkand' }));
+      const hours = uzTime.getHours();
+      const minutes = uzTime.getMinutes();
+      setUzbekistanTime(`${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`);
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   const isDarkMode = theme === 'dark';
 
@@ -59,28 +72,43 @@ const Header: React.FC<HeaderProps> = ({ timeRemaining, onFinish, theme, onToggl
           )}
         </button>
 
-        {/* Modern Timer Display */}
-        <div className={`relative flex items-center px-5 py-2.5 rounded-2xl transition-all duration-300 ${isDarkMode ? 'bg-gradient-to-br from-white/10 to-white/5 border border-white/10 shadow-lg shadow-black/20' : 'bg-gradient-to-br from-slate-100 to-slate-50 border border-slate-200 shadow-inner'}`}>
-          <div className={`text-lg font-mono font-bold ${timeRemaining < 300 ? 'text-red-500 animate-pulse' : isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-            {formatTime(timeRemaining)}
+        {useClock ? (
+          /* Uzbekistan Time Display */
+          <div className={`relative flex items-center px-5 py-2.5 rounded-2xl transition-all duration-300 ${isDarkMode ? 'bg-gradient-to-br from-white/10 to-white/5 border border-white/10 shadow-lg shadow-black/20' : 'bg-gradient-to-br from-slate-100 to-slate-50 border border-slate-200 shadow-inner'}`}>
+            <div className={`text-lg font-mono font-bold ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+              {uzbekistanTime}
+            </div>
+            {/* Decorative dots */}
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 flex flex-col gap-1">
+              <div className={`w-1 h-1 rounded-full ${isDarkMode ? 'bg-white/30' : 'bg-slate-300'}`}></div>
+              <div className={`w-1 h-1 rounded-full ${isDarkMode ? 'bg-white/20' : 'bg-slate-200'}`}></div>
+            </div>
           </div>
-          {/* Decorative dots */}
-          <div className="absolute right-3 top-1/2 -translate-y-1/2 flex flex-col gap-1">
-            <div className={`w-1 h-1 rounded-full ${timeRemaining < 300 ? 'bg-red-500 animate-ping' : isDarkMode ? 'bg-white/30' : 'bg-slate-300'}`}></div>
-            <div className={`w-1 h-1 rounded-full ${timeRemaining < 300 ? 'bg-red-500' : isDarkMode ? 'bg-white/20' : 'bg-slate-200'}`}></div>
+        ) : (
+          /* Timer Display */
+          <div className={`relative flex items-center px-5 py-2.5 rounded-2xl transition-all duration-300 ${isDarkMode ? 'bg-gradient-to-br from-white/10 to-white/5 border border-white/10 shadow-lg shadow-black/20' : 'bg-gradient-to-br from-slate-100 to-slate-50 border border-slate-200 shadow-inner'}`}>
+            <div className={`text-lg font-mono font-bold ${timeRemaining < 300 ? 'text-red-500 animate-pulse' : isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+              {Math.floor(timeRemaining / 60).toString().padStart(2, '0')}:{(timeRemaining % 60).toString().padStart(2, '0')}
+            </div>
+            {/* Decorative dots */}
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 flex flex-col gap-1">
+              <div className={`w-1 h-1 rounded-full ${timeRemaining < 300 ? 'bg-red-500 animate-ping' : isDarkMode ? 'bg-white/30' : 'bg-slate-300'}`}></div>
+              <div className={`w-1 h-1 rounded-full ${timeRemaining < 300 ? 'bg-red-500' : isDarkMode ? 'bg-white/20' : 'bg-slate-200'}`}></div>
+            </div>
           </div>
-        </div>
+        )}
 
-        {/* Modern Finish Button */}
-        <button
-          onClick={onFinish}
-          className={`flex items-center gap-2 px-6 py-2.5 rounded-2xl font-bold text-xs uppercase tracking-[0.15em] transition-all duration-300 ${isDarkMode ? 'bg-[#1a1a1a] text-white hover:bg-[#F15A24]' : 'bg-slate-100 text-slate-700 hover:bg-[#1D1D4B] hover:text-white'} shadow-sm border ${isDarkMode ? 'border-[#333]' : 'border-slate-200'}`}
-        >
-          <span>Finish</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="20 6 9 17 4 12"/>
-          </svg>
-        </button>
+        {showFinishButton && (
+          <button
+            onClick={onFinish}
+            className={`flex items-center gap-2 px-6 py-2.5 rounded-2xl font-bold text-xs uppercase tracking-[0.15em] transition-all duration-300 ${isDarkMode ? 'bg-[#1a1a1a] text-white hover:bg-[#F15A24]' : 'bg-slate-100 text-slate-700 hover:bg-[#1D1D4B] hover:text-white'} shadow-sm border ${isDarkMode ? 'border-[#333]' : 'border-slate-200'}`}
+          >
+            <span>Finish</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </button>
+        )}
       </div>
     </header>
   );
