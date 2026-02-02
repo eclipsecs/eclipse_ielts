@@ -26,6 +26,8 @@ export interface Question {
   synonyms?: string[];      // e.g., ["synonym1", "synonym2"]
   placeholder?: string;
   group?: string;
+  noteText?: string;        // For note completion: text before the blank
+  blankText?: string;       // For note completion: text after the blank
 }
 
 export interface TestState {

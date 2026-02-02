@@ -124,25 +124,48 @@ const ReadingInterface: React.FC<ReadingInterfaceProps> = ({
     return result;
   };
 
-  const renderInput = (q: Question) => (
-    <div key={q.id} id={`q-${q.id}`} className={`mb-4 p-6 rounded-[24px] border transition-all ${isDarkMode ? 'bg-slate-800/40 border-white/5 hover:border-white/10' : 'bg-white border-slate-200 shadow-sm'}`}>
-      <div className="flex gap-4">
-        <span className={`w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs shrink-0 transition-colors ${isDarkMode ? 'bg-white/5 text-[#F15A24]' : 'bg-slate-100 text-slate-500'}`}>{q.id}</span>
-        <div className="flex-1">
-          <p className={`text-[15px] mb-4 font-bold leading-relaxed ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{q.text}</p>
-          <input
-            type="text"
-            value={(userAnswers[q.id] as string) || ''}
-            onChange={(e) => onAnswerChange(q.id, e.target.value)}
-            placeholder="Type your answer..."
-            className={`w-full p-3.5 rounded-xl border outline-none transition-all text-sm font-medium ${
-              isDarkMode ? 'bg-[#020617]/50 border-white/5 text-white focus:border-[#F15A24] placeholder:text-slate-600' : 'bg-slate-50 border-slate-200 text-slate-900 focus:border-blue-800'
-            }`}
-          />
+  const renderInput = (q: Question) => {
+    // Check if this is note completion format (has noteText and blankText)
+    if (q.noteText && q.blankText) {
+      return (
+        <div key={q.id} id={`q-${q.id}`} className="mb-3 pl-8 relative">
+          <span className={`absolute left-0 font-bold text-sm ${isDarkMode ? 'text-[#F15A24]' : 'text-blue-800'}`}>({q.id})</span>
+          <div className="flex flex-wrap items-baseline gap-2">
+            <span className={`text-sm ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{q.noteText}</span>
+            <input
+              type="text"
+              value={(userAnswers[q.id] as string) || ''}
+              onChange={(e) => onAnswerChange(q.id, e.target.value)}
+              className={`min-w-[100px] h-7 border-b-2 text-center font-bold text-sm outline-none ${isDarkMode ? 'border-[#F15A24] text-[#F15A24] bg-[#F15A24]/5' : 'border-blue-800 text-blue-800 bg-blue-50'}`}
+              placeholder="..."
+            />
+            <span className={`text-sm ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{q.blankText}</span>
+          </div>
+        </div>
+      );
+    }
+
+    // Default input format
+    return (
+      <div key={q.id} id={`q-${q.id}`} className={`mb-4 p-6 rounded-[24px] border transition-all ${isDarkMode ? 'bg-slate-800/40 border-white/5 hover:border-white/10' : 'bg-white border-slate-200 shadow-sm'}`}>
+        <div className="flex gap-4">
+          <span className={`w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs shrink-0 transition-colors ${isDarkMode ? 'bg-white/5 text-[#F15A24]' : 'bg-slate-100 text-slate-500'}`}>{q.id}</span>
+          <div className="flex-1">
+            <p className={`text-[15px] mb-4 font-bold leading-relaxed ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{q.text}</p>
+            <input
+              type="text"
+              value={(userAnswers[q.id] as string) || ''}
+              onChange={(e) => onAnswerChange(q.id, e.target.value)}
+              placeholder="Type your answer..."
+              className={`w-full p-3.5 rounded-xl border outline-none transition-all text-sm font-medium ${
+                isDarkMode ? 'bg-[#020617]/50 border-white/5 text-white focus:border-[#F15A24] placeholder:text-slate-600' : 'bg-slate-50 border-slate-200 text-slate-900 focus:border-blue-800'
+              }`}
+            />
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   const renderClassification = (q: Question) => (
     <div key={q.id} id={`q-${q.id}`} className={`mb-4 p-6 rounded-[24px] border transition-all ${isDarkMode ? 'bg-slate-800/40 border-white/5 hover:border-white/10' : 'bg-white border-slate-200 shadow-sm'}`}>
@@ -248,7 +271,7 @@ const ReadingInterface: React.FC<ReadingInterfaceProps> = ({
     </div>
   );
 
-  const sections = [];
+  const sections: { id: string; title: string; instruction: string; qs: Question[]; type: string; options?: string[]; note?: string; tfngInstructions?: string[]; sectionHeading?: string; subHeading?: string }[] = [];
   const qRange = (start: number, end: number) => (questions || []).filter(q => q.id >= start && q.id <= end);
 
   if (passageTitle === "Ambergris") {
@@ -271,6 +294,9 @@ const ReadingInterface: React.FC<ReadingInterfaceProps> = ({
   } else if (passageTitle === "Triumph of the City") {
     sections.push({ id: 's1', title: 'Questions 1-8', instruction: 'Do the following statements agree with the information given in Reading Passage 1?', qs: qRange(1, 8), type: 'tfng' });
     sections.push({ id: 's2', title: 'Questions 9-14', instruction: 'Complete the sentences below with NO MORE THAN TWO WORDS from the passage.', qs: qRange(9, 14), type: 'input' });
+  } else if (passageTitle === "Prosopagnosia") {
+    sections.push({ id: 's1', title: 'Questions 1-7', instruction: 'Do the following statements agree with the information given in Reading Passage 1?', qs: qRange(1, 7), type: 'tfng', tfngInstructions: ['<b>TRUE</b> if the statement agrees with the information', '<b>FALSE</b> if the statement contradicts the information', '<b>NOT GIVEN</b> if there is no information on this'] });
+    sections.push({ id: 's2', title: 'Questions 8-13', instruction: 'Complete the notes below. Choose ONE WORD ONLY from the passage for each answer.', qs: qRange(8, 13), type: 'input', sectionHeading: 'The challenges for prosopagnosia researchers', subHeading: 'Differences in prosopagnosics' });
   } else {
     const qMatches = (questions || []).filter(q => q.type === QuestionType.MATCHING_ENDINGS);
     if (qMatches.length) sections.push({ id: 'm1', title: `Questions ${qMatches[0].id}-${qMatches[qMatches.length-1].id}`, instruction: 'Complete each sentence with the correct ending, A-E, below.', qs: qMatches, type: 'select' });
@@ -310,6 +336,19 @@ const ReadingInterface: React.FC<ReadingInterfaceProps> = ({
                 <h4 className={`text-[11px] font-black uppercase tracking-[0.2em] mb-3 transition-colors duration-500 ${isDarkMode ? 'text-[#F15A24]' : 'text-blue-700'}`}>{section.title}</h4>
                 <div className={`p-6 rounded-[24px] border transition-all duration-500 ${isDarkMode ? 'bg-slate-800/60 border-white/5 shadow-xl' : 'bg-white border-slate-200 shadow-sm'}`}>
                   <p className={`text-[15px] font-bold mb-4 transition-colors duration-500 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{section.instruction}</p>
+                  {section.tfngInstructions && (
+                    <ul className={`list-disc list-inside space-y-2 text-sm ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>
+                      {section.tfngInstructions.map((item, idx) => (
+                        <li key={idx} dangerouslySetInnerHTML={{ __html: item }} />
+                      ))}
+                    </ul>
+                  )}
+                  {section.sectionHeading && (
+                    <p className={`text-[16px] font-black mb-3 mt-6 transition-colors duration-500 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{section.sectionHeading}</p>
+                  )}
+                  {section.subHeading && (
+                    <p className={`text-[14px] font-bold mb-4 transition-colors duration-500 ${isDarkMode ? 'text-white' : 'text-slate-700'}`}>{section.subHeading}</p>
+                  )}
                   {section.note && (
                     <p className={`mb-4 text-xs font-semibold transition-colors duration-500 ${isDarkMode ? 'text-[#F15A24]' : 'text-blue-700'}`}>
                       <span className={`font-black ${isDarkMode ? 'text-[#F15A24]' : 'text-blue-700'}`}>NB</span> {section.note}

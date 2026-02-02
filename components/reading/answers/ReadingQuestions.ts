@@ -330,6 +330,84 @@ export const READING_QUESTIONS: Record<string, Question[]> = {
     { id: 13, type: QuestionType.FILL_GAPS, text: "Since the 1970s, Bondi has become the ............. backdrop for any artistic project requiring a beach setting.", correctAnswer: "inevitable", placeholder: "13." },
     { id: 14, type: QuestionType.FILL_GAPS, text: "For the 2000 Olympics, Bondi was chosen to host the beach ............. stadium.", correctAnswer: "volleyball", placeholder: "14." }
   ],
+  'r-prosopagnosia': [
+    { 
+      id: 1, 
+      type: QuestionType.TFNG, 
+      text: "Before attending college Jacob was capable of recognising people he knew well.", 
+      correctAnswer: "FALSE",
+      answerLocation: "Paragraph 2",
+      synonyms: ["before college", "previously", "earlier"],
+      explanation: "The passage states that Jacob 'had had the same trouble all his life' recognizing people, meaning he had prosopagnosia before college.",
+      group: "Questions 1-7: TRUE/FALSE/NOT GIVEN - Do the following statements agree with the information given in Reading Passage 1? In boxes 1-7 on your answer sheet, write TRUE if the statement agrees with the information, FALSE if the statement contradicts the information, NOT GIVEN if there is no information on this."
+    },
+    { 
+      id: 2, 
+      type: QuestionType.TFNG, 
+      text: "Researchers believe that prosopagnosia may be a growing problem.", 
+      correctAnswer: "NOT GIVEN",
+      answerLocation: "N/A",
+      synonyms: ["increasing", "more common", "rising"],
+      explanation: "The passage mentions that prosopagnosia is more common than previously thought (2-2.5%) but does not suggest it is a growing problem over time.",
+      group: "Questions 1-7: TRUE/FALSE/NOT GIVEN"
+    },
+    { 
+      id: 3, 
+      type: QuestionType.TFNG, 
+      text: "It is harder to identify developmental prosopagnosia in babies than in young children.", 
+      correctAnswer: "NOT GIVEN",
+      answerLocation: "N/A",
+      synonyms: ["babies", "infants", "diagnosis", "identifying"],
+      explanation: "The passage mentions studies of babies with lens problems as a risk factor but does not discuss how easy or hard it is to identify prosopagnosia in babies versus children.",
+      group: "Questions 1-7: TRUE/FALSE/NOT GIVEN"
+    },
+    { 
+      id: 4, 
+      type: QuestionType.TFNG, 
+      text: "A German study seems to support the Harvard and UCL research findings.", 
+      correctAnswer: "TRUE",
+      answerLocation: "Paragraph 3",
+      synonyms: ["German study", "Martina Gruter", "confirmation"],
+      explanation: "The German study by Martina Gruter reported similar findings (2.5%) to the Harvard/UCL study (2%), both showing that prosopagnosia is more common than previously thought.",
+      group: "Questions 1-7: TRUE/FALSE/NOT GIVEN"
+    },
+    { 
+      id: 5, 
+      type: QuestionType.TFNG, 
+      text: "In general, prosopagnosics are aware that other people can recognise faces more easily than they can.", 
+      correctAnswer: "FALSE",
+      answerLocation: "Paragraph 4",
+      synonyms: ["awareness", "recognition skills", "comparison"],
+      explanation: "The passage states that prosopagnosics 'often don't realise that other people have better recognition skills than they do.'",
+      group: "Questions 1-7: TRUE/FALSE/NOT GIVEN"
+    },
+    { 
+      id: 6, 
+      type: QuestionType.TFNG, 
+      text: "In most cases, prosopagnosics have developed ways to deal with their problem.", 
+      correctAnswer: "TRUE",
+      answerLocation: "Paragraph 5",
+      synonyms: ["strategies", "coping", "managing"],
+      explanation: "The passage states that 'the majority of developmental prosopagnosics possess strategies that allow them to get around their difficulty.'",
+      group: "Questions 1-7: TRUE/FALSE/NOT GIVEN"
+    },
+    { 
+      id: 7, 
+      type: QuestionType.TFNG, 
+      text: "The study of prosopagnosia may help neuroscientists to treat different kinds of brain injury.", 
+      correctAnswer: "NOT GIVEN",
+      answerLocation: "N/A",
+      synonyms: ["treatment", "brain injury", "therapy"],
+      explanation: "The passage mentions that studying prosopagnosia may help understand how the brain processes information, but does not specifically mention treating brain injuries.",
+      group: "Questions 1-7: TRUE/FALSE/NOT GIVEN"
+    },
+    { id: 8, type: QuestionType.FILL_GAPS, text: "As well as being unable to recognize facial features prosopagnosics may also have problems recognizing commonly seen", noteText: "As well as being unable to recognize facial features prosopagnosics may also have problems recognizing commonly seen", blankText: ".............", correctAnswer: "animals", placeholder: "8.", answerLocation: "Paragraph 6", synonyms: ["creatures", "species", "wildlife"], explanation: "The passage states that some prosopagnosics have trouble with 'ordinary everyday objects and... animals which would normally be familiar as well.'", group: "Questions 8-13: Complete the notes below. Choose ONE WORD ONLY from the passage for each answer." },
+    { id: 9, type: QuestionType.FILL_GAPS, text: "The", noteText: "The", blankText: "............. on someone else's face.", correctAnswer: "emotion", placeholder: "9.", answerLocation: "Paragraph 6", synonyms: ["feelings", "expression", "mood"], explanation: "The passage mentions that some prosopagnosics 'could identify the emotion which was conveyed on another's face.'", group: "Questions 8-13: Complete the notes below. Choose ONE WORD ONLY from the passage for each answer." },
+    { id: 10, type: QuestionType.FILL_GAPS, text: "Prosopagnosia may be caused by just one", noteText: "Prosopagnosia may be caused by just one", blankText: "............. according to Martina Gruter", correctAnswer: "gene", placeholder: "10.", answerLocation: "Paragraph 7", synonyms: ["genetic factor", "DNA", "inherited"], explanation: "The German team 'believe they have good evidence that a single gene could be responsible.'", group: "Questions 8-13: Complete the notes below. Choose ONE WORD ONLY from the passage for each answer." },
+    { id: 11, type: QuestionType.FILL_GAPS, text: "Prosopagnosia may be caused by a defect in the", noteText: "Prosopagnosia may be caused by a defect in the", blankText: "............. eye according to Brad Duchaine", correctAnswer: "left", placeholder: "11.", answerLocation: "Paragraph 7", synonyms: ["one eye", "left eye", "specific eye"], explanation: "Duchaine refers to studies showing that 'when it's the left one, being unable to see through this eye during the first two months of life is a major risk factor.'", group: "Questions 8-13: Complete the notes below. Choose ONE WORD ONLY from the passage for each answer." },
+    { id: 12, type: QuestionType.FILL_GAPS, text: "Joseph Degutis' patient proved he had been successfully trained to recognize faces inside the", noteText: "Joseph Degutis' patient proved he had been successfully trained to recognize faces inside the", blankText: ".............", correctAnswer: "laboratory", placeholder: "12.", answerLocation: "Paragraph 8", synonyms: ["lab", "test setting", "research facility"], explanation: "Degutis 'reported successfully training a severe developmental prosopagnosic to recognise faces during tests carried out in the laboratory.'", group: "Questions 8-13: Complete the notes below. Choose ONE WORD ONLY from the passage for each answer." },
+    { id: 13, type: QuestionType.FILL_GAPS, text: "Thomas Gruter doubts that training will work and mentions that", noteText: "Thomas Gruter doubts that training will work and mentions that", blankText: "............. by some subjects can affect research results", correctAnswer: "cheating", placeholder: "13.", answerLocation: "Paragraph 8", synonyms: ["deception", "dishonesty", "tricks"], explanation: "Thomas Gruter 'points out that cheating is a possibility during tests' and gives an example of someone memorising facial features.'", group: "Questions 8-13: Complete the notes below. Choose ONE WORD ONLY from the passage for each answer." }
+  ],
   'r-triumph-city': [
     { id: 1, type: QuestionType.TFNG, text: "Edward Glaeser argues that cities are unhealthy places that should be avoided.", correctAnswer: "FALSE" },
     { id: 2, type: QuestionType.TFNG, text: "Glaeser believes that proximity to intelligent people enhances our own intelligence.", correctAnswer: "TRUE" },

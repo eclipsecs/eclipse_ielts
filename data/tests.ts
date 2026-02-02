@@ -8,6 +8,7 @@ export const AVAILABLE_TESTS: TestMeta[] = [
   { id: 'r-ascension', title: 'The Ascension Island experiment', category: 'reading', passageNumber: 1, duration: 20, difficulty: 'Medium', isAvailable: true },
   { id: 'r-beatrix-potter', title: 'The life of Beatrix Potter', category: 'reading', passageNumber: 1, duration: 20, difficulty: 'Medium', isAvailable: true },
   { id: 'r-bondi', title: 'Bondi: Australia\'s most famous beach', category: 'reading', passageNumber: 1, duration: 20, difficulty: 'Medium', isAvailable: true },
+  { id: 'r-prosopagnosia', title: 'Prosopagnosia: Face Blindness', category: 'reading', passageNumber: 1, duration: 20, difficulty: 'Medium', isAvailable: true },
   { id: 'r-triumph-city', title: 'Triumph of the City: Book Review', category: 'reading', passageNumber: 1, duration: 20, difficulty: 'Medium', isAvailable: true },
   // Passage 2
   { id: 'r-p2-computer-games', title: 'Computer Games: Impact on Learning', category: 'reading', passageNumber: 2, duration: 20, difficulty: 'Medium', isAvailable: true },
