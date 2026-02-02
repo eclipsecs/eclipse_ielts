@@ -94,28 +94,47 @@ const ArticleInterface: React.FC<ArticleInterfaceProps> = ({
 
   const renderArticleView = () => (
     <div className="animate-in fade-in duration-500">
-      <div className="mb-8">
+      <div className="mb-8 text-center">
         <button
           onClick={handleGoBack}
-          className={`flex items-center gap-2 text-sm font-bold uppercase tracking-wider mb-4 ${isDarkMode ? 'text-[#F15A24]' : 'text-[#1D1D4B]'}`}
+          className={`inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider mb-6 ${isDarkMode ? 'text-[#F15A24]' : 'text-[#1D1D4B]'}`}
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
             <path d="M19 12H5M12 19l-7-7 7-7"/>
           </svg>
           Back to Articles
         </button>
-        <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${isDarkMode ? 'bg-[#F15A24]/20 text-[#F15A24]' : 'bg-[#F15A24]/10 text-[#F15A24]'}`}>
-          Article
-        </span>
-        <h1 className={`text-3xl md:text-4xl font-black mt-4 mb-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+        <div className="flex items-center justify-center gap-3 mb-4">
+          <svg className="cartoon-logo w-8 h-8" viewBox="0 0 48 48" fill="none">
+            <rect x="8" y="6" width="32" height="40" rx="3" fill={isDarkMode ? '#F15A24' : '#1D1D4B'} transform="rotate(-2 8 6)"/>
+            <rect x="12" y="10" width="24" height="32" rx="2" fill={isDarkMode ? '#1e1e1e' : 'white'} transform="rotate(-2 8 6)"/>
+            <path d="M16 18h16M16 24h12M16 30h14" stroke={isDarkMode ? '#F15A24' : '#1D1D4B'} strokeWidth="2" strokeLinecap="round"/>
+          </svg>
+          <span className={`px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-wider ${isDarkMode ? 'bg-[#F15A24]/20 text-[#F15A24]' : 'bg-[#F15A24]/10 text-[#F15A24]'}`}>
+            Article
+          </span>
+        </div>
+        <h1 className={`text-3xl md:text-4xl font-['Fredoka_One'] tracking-wide mb-4 ${isDarkMode ? 'text-white' : 'text-slate-900'}`} style={{ fontFamily: 'Fredoka One, cursive' }}>
           {article?.title}
         </h1>
-        <div className={`flex items-center gap-4 text-sm ${isDarkMode ? 'text-[#b0b0b0]' : 'text-slate-500'}`}>
-          <span>By {article?.author}</span>
+        <div className={`flex items-center justify-center gap-4 text-lg font-['Fredoka'] ${isDarkMode ? 'text-[#b0b0b0]' : 'text-slate-500'}`} style={{ fontFamily: 'Fredoka, Balsamiq Sans, sans-serif' }}>
+          <span className="flex items-center gap-2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            {article?.author}
+          </span>
           <span>•</span>
           <span>{article?.source}</span>
           <span>•</span>
-          <span>{article?.readingTime} min read</span>
+          <span className="flex items-center gap-1">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            {article?.readingTime} min read
+          </span>
         </div>
       </div>
 
@@ -128,31 +147,31 @@ const ArticleInterface: React.FC<ArticleInterfaceProps> = ({
       <div className="flex flex-wrap gap-4">
         <button
           onClick={() => setCurrentView('vocabulary')}
-          className={`flex-1 min-w-[200px] p-6 rounded-[24px] border transition-all duration-300 hover:-translate-y-2 ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] hover:border-[#F15A24]' : 'bg-white border-slate-200 hover:border-slate-400'} text-left`}
+          className={`flex-1 min-w-[200px] p-6 rounded-[24px] border-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_8px_30px_rgba(241,90,36,0.15)] ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] hover:border-[#F15A24]' : 'bg-white border-slate-200 hover:border-[#1D1D4B]'} text-left group`}
         >
-          <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-4 ${isDarkMode ? 'bg-[#252525]' : 'bg-slate-100'}`}>
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={isDarkMode ? '#F15A24' : '#1D1D4B'} strokeWidth="2">
+          <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-4 ${isDarkMode ? 'bg-[#252525] group-hover:bg-[#F15A24]/20' : 'bg-slate-100 group-hover:bg-[#1D1D4B]/10'} transition-colors`}>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={isDarkMode ? '#F15A24' : '#1D1D4B'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
               <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
             </svg>
           </div>
-          <h3 className={`text-xl font-black mb-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Vocabulary</h3>
-          <p className={`text-sm ${isDarkMode ? 'text-[#b0b0b0]' : 'text-slate-500'}`}>{article?.vocabulary.length} words to learn</p>
+          <h3 className={`text-xl font-['Fredoka_One'] mb-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`} style={{ fontFamily: 'Fredoka One, cursive' }}>Vocabulary</h3>
+          <p className={`text-sm font-['Fredoka'] ${isDarkMode ? 'text-[#b0b0b0]' : 'text-slate-500'}`} style={{ fontFamily: 'Fredoka, Balsamiq Sans, sans-serif' }}>{article?.vocabulary.length} words to learn</p>
         </button>
 
         <button
           onClick={() => setCurrentView('practice')}
-          className={`flex-1 min-w-[200px] p-6 rounded-[24px] border transition-all duration-300 hover:-translate-y-2 ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] hover:border-[#F15A24]' : 'bg-white border-slate-200 hover:border-slate-400'} text-left`}
+          className={`flex-1 min-w-[200px] p-6 rounded-[24px] border-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_8px_30px_rgba(241,90,36,0.15)] ${isDarkMode ? 'bg-[#1e1e1e] border-[#3a3a3a] hover:border-[#F15A24]' : 'bg-white border-slate-200 hover:border-[#1D1D4B]'} text-left group`}
         >
-          <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-4 ${isDarkMode ? 'bg-[#252525]' : 'bg-slate-100'}`}>
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={isDarkMode ? '#F15A24' : '#1D1D4B'} strokeWidth="2">
+          <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-4 ${isDarkMode ? 'bg-[#252525] group-hover:bg-[#F15A24]/20' : 'bg-slate-100 group-hover:bg-[#1D1D4B]/10'} transition-colors`}>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={isDarkMode ? '#F15A24' : '#1D1D4B'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="10"/>
               <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
               <line x1="12" y1="17" x2="12.01" y2="17"/>
             </svg>
           </div>
-          <h3 className={`text-xl font-black mb-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Practice</h3>
-          <p className={`text-sm ${isDarkMode ? 'text-[#b0b0b0]' : 'text-slate-500'}`}>{article?.practice.length} questions</p>
+          <h3 className={`text-xl font-['Fredoka_One'] mb-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`} style={{ fontFamily: 'Fredoka One, cursive' }}>Practice</h3>
+          <p className={`text-sm font-['Fredoka'] ${isDarkMode ? 'text-[#b0b0b0]' : 'text-slate-500'}`} style={{ fontFamily: 'Fredoka, Balsamiq Sans, sans-serif' }}>{article?.practice.length} questions</p>
         </button>
       </div>
     </div>
