@@ -1,7 +1,7 @@
 import { Question, QuestionType } from '../../../types';
 
 // Options for Section 2 matching
-const SECTION2_OPTIONS = [
+export const SECTION2_OPTIONS = [
   { label: 'A  deposit is required', value: 'A' },
   { label: 'B  only available at weekends', value: 'B' },
   { label: 'C  can be reserved online', value: 'C' },
@@ -45,39 +45,13 @@ export const LISTENING_QUESTIONS: Record<string, Question[]> = {
     { id: 13, section: 'SECTION 2', group: 'Questions 11-15', type: QuestionType.MATCHING_BOX, text: 'Tennis courts', correctAnswer: '', options: SECTION2_OPTIONS },
     { id: 14, section: 'SECTION 2', group: 'Questions 11-15', type: QuestionType.MATCHING_BOX, text: 'Large hall', correctAnswer: '', options: SECTION2_OPTIONS },
     { id: 15, section: 'SECTION 2', group: 'Questions 11-15', type: QuestionType.MATCHING_BOX, text: 'Computer lab', correctAnswer: '', options: SECTION2_OPTIONS },
-    
-    // SECTION 2 - Questions 16-20 (Note completion format)
-    { id: 16, section: 'SECTION 2', group: 'Questions 16-20', type: QuestionType.NOTE_COMPLETION, text: 'Event', correctAnswer: '', noteText: 'Event:', blankText: '' },
-    { id: 17, section: 'SECTION 2', group: 'Questions 16-20', type: QuestionType.NOTE_COMPLETION, text: 'Entrants', correctAnswer: '', noteText: 'Entrants:', blankText: '' },
-    { id: 18, section: 'SECTION 2', group: 'Questions 16-20', type: QuestionType.NOTE_COMPLETION, text: 'Type of prize', correctAnswer: '', noteText: 'Type of prize:', blankText: 'competition' },
-    { id: 19, section: 'SECTION 2', group: 'Questions 16-20', type: QuestionType.NOTE_COMPLETION, text: 'Date', correctAnswer: '', noteText: 'Date:', blankText: 'Starts on' },
-    { id: 20, section: 'SECTION 2', group: 'Questions 16-20', type: QuestionType.NOTE_COMPLETION, text: 'Entrants', correctAnswer: '', noteText: 'Entrants:', blankText: '' },
-    
-    // SECTION 3 - Questions 21-25 (Multiple Choice)
-    { id: 21, section: 'SECTION 3', group: 'Questions 21-25', type: QuestionType.MULTIPLE_CHOICE, text: 'Martin and Julia agree that the most difficult part about working together is', correctAnswer: '', options: [
-      {label: 'A dividing the reading up equally', value: 'A'},
-      {label: 'B finding a mutually convenient time to meet', value: 'B'},
-      {label: 'C ensuring all sections of the presentation link together', value: 'C'}
-    ] },
-    { id: 22, section: 'SECTION 3', group: 'Questions 21-25', type: QuestionType.MULTIPLE_CHOICE, text: 'What does Martin think is important to remember when they deliver the presentation?', correctAnswer: '', options: [
-      {label: 'A to provide sufficient detail', value: 'A'},
-      {label: 'B to consider the kind of audience they have', value: 'B'},
-      {label: 'C to avoid going over the time limit', value: 'C'}
-    ] },
-    { id: 23, section: 'SECTION 3', group: 'Questions 21-25', type: QuestionType.MULTIPLE_CHOICE, text: 'Which aspect of biomechanics is Martin keen to research further?', correctAnswer: '', options: [
-      {label: 'A the analysis of human movement', value: 'A'},
-      {label: 'B the influence of the environment', value: 'B'},
-      {label: 'C the role of sports equipment', value: 'C'}
-    ] },
-    { id: 24, section: 'SECTION 3', group: 'Questions 21-25', type: QuestionType.MULTIPLE_CHOICE, text: 'According to Julia, sports science is of most benefit to athletes when', correctAnswer: '', options: [
-      {label: 'A it enables them to perform consistently', value: 'A'},
-      {label: 'B it identifies an athlete\'s readiness for competition', value: 'B'},
-      {label: 'C it assesses the effectiveness of a training programme', value: 'C'}
-    ] },
-    { id: 25, section: 'SECTION 3', group: 'Questions 21-25', type: QuestionType.MULTIPLE_CHOICE, text: 'What does Julia say about the psychology of athletes?', correctAnswer: '', options: [
-      {label: 'A They are particularly strong-willed', value: 'A'},
-      {label: 'B They become over-confident when winning', value: 'B'},
-      {label: 'C They depend too much on professional support', value: 'C'}
-    ] }
+
+    // SECTION 2 - Questions 16-20 (Form completion inside box)
+    { id: 16, section: 'SECTION 2', group: 'Questions 16-20', type: QuestionType.FILL_GAPS, text: 'Date: Oct. 14th\nEvent: ____ competition', correctAnswer: '', placeholder: '', heading: 'Event Information' },
+    { id: 17, section: 'SECTION 2', group: 'Questions 16-20', type: QuestionType.FILL_GAPS, text: 'Entrants:', correctAnswer: '', placeholder: '', heading: '' },
+    { id: 18, section: 'SECTION 2', group: 'Questions 16-20', type: QuestionType.FILL_GAPS, text: 'Type of prize:', correctAnswer: '', placeholder: '', heading: '' },
+    { id: 19, section: 'SECTION 2', group: 'Questions 16-20', type: QuestionType.FILL_GAPS, text: 'Cost of ticket per person: $1.50\nDate: Starts on _____', correctAnswer: '', placeholder: '', heading: '' },
+    { id: 20, section: 'SECTION 2', group: 'Questions 16-20', type: QuestionType.FILL_GAPS, text: 'Event: Photography exhibition\nEntrants:', correctAnswer: '', placeholder: '', heading: 'Event Information' },
+    { id: 21, section: 'SECTION 2', group: 'Questions 16-20', type: QuestionType.FILL_GAPS, text: 'Type of prize: DVDs\nCost of ticket per person: $2.00', correctAnswer: '', placeholder: '', heading: '' }
   ]
 };
