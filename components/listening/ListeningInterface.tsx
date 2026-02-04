@@ -115,33 +115,44 @@ const ListeningInterface: React.FC<ListeningInterfaceProps> = ({
     );
   };
 
-  const renderPartMCQ = (q: Question) => (
+  const renderPartMCQ = (q: Question, showNumber: boolean = true, limitSelection?: number) => (
     <div key={q.id} id={`q-${q.id}`} className="mb-8 last:mb-0">
       <div className="flex gap-3 mb-3">
-        <span className={`text-base font-black ${isDarkMode ? 'text-gray-500' : 'text-slate-400'}`}>{q.id}</span>
+        {showNumber && <span className={`text-base font-black ${isDarkMode ? 'text-gray-500' : 'text-slate-400'}`}>{q.id}</span>}
         <p className={`text-base font-black ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{q.text}</p>
       </div>
       <div className="pl-8 space-y-2">
-        {q.options?.map(opt => (
-          <button
-            key={opt.value}
-            onClick={() => {
-              const current = (userAnswers[q.id] as string[]) || [];
-              const updated = current.includes(opt.value)
-                ? current.filter(v => v !== opt.value)
-                : [...current, opt.value];
-              onAnswerChange(q.id, updated);
-            }}
-            className={`flex items-center gap-4 w-fit p-2 pr-6 rounded-lg border-2 transition-all ${
-              (userAnswers[q.id] as string[])?.includes(opt.value) ? 'border-blue-500 bg-blue-500/5' : 'border-transparent hover:bg-slate-500/5'
-            }`}
-          >
-            <span className={`text-sm font-black w-6 h-6 rounded flex items-center justify-center border-2 ${
-              (userAnswers[q.id] as string[])?.includes(opt.value) ? 'bg-blue-500 border-blue-500 text-white' : isDarkMode ? 'border-slate-700 text-slate-400' : 'border-slate-200 text-slate-600'
-            }`}>{opt.value}</span>
-            <span className={`text-sm font-bold ${(userAnswers[q.id] as string[])?.includes(opt.value) ? 'text-blue-500' : isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>{opt.label}</span>
-          </button>
-        ))}
+        {q.options?.map(opt => {
+          const current = (userAnswers[q.id] as string[]) || [];
+          const isSelected = current.includes(opt.value);
+          const isDisabled = limitSelection ? (!isSelected && current.length >= limitSelection) : false;
+          
+          return (
+            <button
+              key={opt.value}
+              onClick={() => {
+                if (isSelected) {
+                  // Deselect
+                  const updated = current.filter(v => v !== opt.value);
+                  onAnswerChange(q.id, updated);
+                } else if (!isDisabled) {
+                  // Select (with limit)
+                  const updated = limitSelection ? [...current, opt.value].slice(0, limitSelection) : [...current, opt.value];
+                  onAnswerChange(q.id, updated);
+                }
+              }}
+              disabled={isDisabled}
+              className={`flex items-center gap-4 w-fit p-2 pr-6 rounded-lg border-2 transition-all ${
+                isSelected ? 'border-blue-500 bg-blue-500/5' : isDisabled ? 'opacity-40 cursor-not-allowed' : 'border-transparent hover:bg-slate-500/5'
+              }`}
+            >
+              <span className={`text-sm font-black w-6 h-6 rounded flex items-center justify-center border-2 ${
+                isSelected ? 'bg-blue-500 border-blue-500 text-white' : isDarkMode ? 'border-slate-700 text-slate-400' : 'border-slate-200 text-slate-600'
+              }`}>{opt.value}</span>
+              <span className={`text-sm font-bold ${isSelected ? 'text-blue-500' : isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>{opt.label}</span>
+            </button>
+          );
+        })}
       </div>
     </div>
   );
@@ -278,8 +289,9 @@ const ListeningInterface: React.FC<ListeningInterfaceProps> = ({
               </div>
               {/* Questions 8-10 */}
               <div className="mt-8">
-                <p className={`text-sm font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Questions 8-10</p>
-                {questions8to10.map(q => renderPartMCQ(q))}
+                <p className={`text-sm font-bold mb-1 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Questions 8-10</p>
+                <p className={`text-xs mb-4 ${isDarkMode ? 'text-gray-400' : 'text-slate-500'}`}>Choose three letters, A-G.</p>
+                {questions8to10.map(q => renderPartMCQ(q, false, 3))}
               </div>
             </SectionBlock>
 
