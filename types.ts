@@ -1,4 +1,3 @@
-
 export enum QuestionType {
   MATCHING_ENDINGS = 'MATCHING_ENDINGS',
   MATCHING_PEOPLE = 'MATCHING_PEOPLE',
@@ -13,8 +12,44 @@ export enum QuestionType {
 }
 
 export type Theme = 'light' | 'dark';
-export type AppView = 'home' | 'test' | 'roadmap' | 'passage1' | 'passage2' | 'passage3' | 'article' | 'resources' | 'study-materials' | 'podcasts' | 'websites' | 'books' | 'resource-articles';
+export type AppView = 'home' | 'test' | 'roadmap' | 'passage1' | 'passage2' | 'passage3' | 'article' | 'resources' | 'study-materials' | 'podcasts' | 'websites' | 'books' | 'resource-articles' | 'login' | 'register' | 'profile';
 export type TestCategory = 'reading' | 'listening' | 'writing' | 'full' | 'article';
+
+// User types
+export interface User {
+  id: string;
+  email: string;
+  displayName: string;
+  photoURL?: string;
+  createdAt: Date;
+  lastLoginAt: Date;
+  targetBandScore: number;
+  nativeLanguage: string;
+  studyLevel: 'beginner' | 'intermediate' | 'advanced';
+  totalTestsCompleted: number;
+  averageScore: number;
+}
+
+export interface UserCredentials {
+  email: string;
+  password: string;
+}
+
+export interface UserRegistrationData {
+  email: string;
+  password: string;
+  displayName: string;
+  targetBandScore: number;
+  nativeLanguage: string;
+  studyLevel: 'beginner' | 'intermediate' | 'advanced';
+}
+
+export interface AuthState {
+  user: User | null;
+  isAuthenticated: boolean;
+  isLoading: boolean;
+  error: string | null;
+}
 
 export interface Question {
   id: number;
@@ -23,14 +58,14 @@ export interface Question {
   options?: { label: string; value: string }[];
   correctAnswer: string | string[];
   explanation?: string;
-  answerLocation?: string;  // e.g., "Paragraph 2, line 3"
-  synonyms?: string[];      // e.g., ["synonym1", "synonym2"]
+  answerLocation?: string;
+  synonyms?: string[];
   placeholder?: string;
   group?: string;
-  section?: string;         // e.g., "SECTION 1", "SECTION 2"
-  noteText?: string;        // For note completion: text before the blank
-  blankText?: string;       // For note completion: text after the blank
-  heading?: string;          // For section heading like "Community Centre Facilities"
+  section?: string;
+  noteText?: string;
+  blankText?: string;
+  heading?: string;
 }
 
 export interface TestState {
@@ -93,5 +128,5 @@ export interface ArticleData {
   content: string;
   vocabulary: VocabularyItem[];
   practice: ArticlePracticeQuestion[];
-  readingTime: number; // in minutes
+  readingTime: number;
 }

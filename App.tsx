@@ -16,8 +16,13 @@ import Passage1 from './components/reading/Passage1';
 import Passage2 from './components/reading/Passage2';
 import Passage3 from './components/reading/Passage3';
 import ResourcesInterface from './components/resources/ResourcesInterface';
+import Login from './components/auth/Login';
+import Register from './components/auth/Register';
+import UserProfile from './components/auth/UserProfile';
+import { AuthProvider, useAuth } from './context/AuthContext';
 
-const App: React.FC = () => {
+const AppContent: React.FC = () => {
+  const { isAuthenticated, user } = useAuth();
   const [view, setView] = useState<AppView>('home');
   const [activeTest, setActiveTest] = useState<TestMeta | null>(null);
   const [state, setState] = useState<TestState>({
@@ -90,6 +95,44 @@ const App: React.FC = () => {
     setState((prev) => ({ ...prev, theme: prev.theme === 'light' ? 'dark' : 'light' }));
   };
 
+  const handleGoProfile = () => {
+    if (isAuthenticated) {
+      setView('profile');
+    } else {
+      setView('login');
+    }
+  };
+
+  // Login/Register views
+  if (view === 'login') {
+    return (
+      <Login
+        theme={state.theme}
+        onSwitchToRegister={() => setView('register')}
+        onGoHome={handleGoHome}
+      />
+    );
+  }
+
+  if (view === 'register') {
+    return (
+      <Register
+        theme={state.theme}
+        onSwitchToLogin={() => setView('login')}
+        onGoHome={handleGoHome}
+      />
+    );
+  }
+
+  if (view === 'profile') {
+    return (
+      <UserProfile
+        theme={state.theme}
+        onGoHome={handleGoHome}
+      />
+    );
+  }
+
   if (view === 'home') {
     return (
       <HomePage 
@@ -106,6 +149,10 @@ const App: React.FC = () => {
         onGoResources={() => {
           setView('resources');
         }}
+        isAuthenticated={isAuthenticated}
+        user={user || null}
+        onLogin={() => setView('login')}
+        onRegister={() => setView('register')}
       />
     );
   }
@@ -229,6 +276,10 @@ const App: React.FC = () => {
         onGoPassage2={() => setView('passage2')}
         onGoPassage3={() => setView('passage3')}
         initialView="reading-modalities"
+        isAuthenticated={isAuthenticated}
+        user={user || null}
+        onLogin={() => setView('login')}
+        onRegister={() => setView('register')}
       />
     );
   }
@@ -386,6 +437,7 @@ const App: React.FC = () => {
         theme={state.theme} 
         onToggleTheme={handleToggleTheme} 
         onGoHome={handleGoHome}
+        onGoProfile={handleGoProfile}
         useClock={false}
       />
       
@@ -414,6 +466,14 @@ const App: React.FC = () => {
         )}
       </main>
     </div>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 };
 

@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Theme } from '../../types';
+import { useAuth } from '../../context/AuthContext';
 
 interface HeaderProps {
   timeRemaining: number;
@@ -8,13 +9,15 @@ interface HeaderProps {
   theme: Theme;
   onToggleTheme: () => void;
   onGoHome?: () => void;
+  onGoProfile?: () => void;
   showFinishButton?: boolean;
   useClock?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ timeRemaining, onFinish, theme, onToggleTheme, onGoHome, showFinishButton = true, useClock = true }) => {
+const Header: React.FC<HeaderProps> = ({ timeRemaining, onFinish, theme, onToggleTheme, onGoHome, onGoProfile, showFinishButton = true, useClock = true }) => {
   const [uzbekistanTime, setUzbekistanTime] = useState<string>('');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { user, isAuthenticated } = useAuth();
 
   useEffect(() => {
     const updateTime = () => {
@@ -49,6 +52,30 @@ const Header: React.FC<HeaderProps> = ({ timeRemaining, onFinish, theme, onToggl
 
       {/* Right side controls */}
       <div className="flex items-center gap-3">
+        {/* User Profile / Login Button */}
+        {isAuthenticated && user ? (
+          <button
+            onClick={onGoProfile}
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider transition-all ${isDarkMode ? 'bg-[#F15A24] text-white hover:opacity-90' : 'bg-[#1D1D4B] text-white hover:opacity-90'}`}
+          >
+            <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+              {user.displayName.charAt(0).toUpperCase()}
+            </div>
+            <span className="hidden sm:inline">{user.displayName.split(' ')[0]}</span>
+          </button>
+        ) : (
+          <button
+            onClick={onGoProfile}
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider transition-all ${isDarkMode ? 'bg-[#1a1a1a] text-white hover:bg-[#F15A24] border border-white/10' : 'bg-slate-100 text-slate-700 hover:bg-[#1D1D4B] hover:text-white border border-slate-200'}`}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span className="hidden sm:inline">Login</span>
+          </button>
+        )}
+
         {/* Theme Toggle */}
         <button 
           onClick={onToggleTheme}

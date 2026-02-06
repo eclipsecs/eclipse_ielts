@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Theme, TestCategory, TestMeta } from '../../types';
+import { Theme, TestCategory, TestMeta, User } from '../../types';
 import { AVAILABLE_TESTS } from '../../data/tests';
 
 interface HomePageProps {
@@ -14,6 +14,10 @@ interface HomePageProps {
   onGoArticle: () => void;
   onGoResources: () => void;
   initialView?: HomeView;
+  isAuthenticated?: boolean;
+  user?: User | null;
+  onLogin?: () => void;
+  onRegister?: () => void;
 }
 
 type HomeView = 'modalities' | 'reading-modalities' | 'reading' | 'listening' | 'full' | 'article' | 'resources';
@@ -28,7 +32,11 @@ const HomePage: React.FC<HomePageProps> = ({
   onGoPassage3,
   onGoArticle,
   onGoResources,
-  initialView
+  initialView,
+  isAuthenticated = false,
+  user = null,
+  onLogin,
+  onRegister,
 }) => {
   const [currentView, setCurrentView] = useState<HomeView>(initialView || 'modalities');
   const [uzbekistanTime, setUzbekistanTime] = useState<string>('');
@@ -627,6 +635,36 @@ const HomePage: React.FC<HomePageProps> = ({
         </div>
 
         <div className="flex items-center gap-4">
+          {isAuthenticated && user ? (
+            <button
+              onClick={onLogin}
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl font-bold text-xs uppercase tracking-[0.15em] transition-all ${isDarkMode ? 'bg-[#F15A24] text-white hover:opacity-90' : 'bg-[#1D1D4B] text-white hover:opacity-90'}`}
+            >
+              <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+                {user.displayName.charAt(0).toUpperCase()}
+              </div>
+              <span>{user.displayName.split(' ')[0]}</span>
+            </button>
+          ) : (
+            <>
+              <button
+                onClick={onLogin}
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl font-bold text-xs uppercase tracking-[0.15em] transition-all ${isDarkMode ? 'bg-[#1a1a1a] text-white hover:bg-[#F15A24]' : 'bg-slate-100 text-slate-700 hover:bg-[#1D1D4B] hover:text-white'} shadow-sm border ${isDarkMode ? 'border-[#333]' : 'border-slate-200'}`}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+                <span>Login</span>
+              </button>
+              <button
+                onClick={onRegister}
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl font-bold text-xs uppercase tracking-[0.15em] transition-all ${isDarkMode ? 'bg-[#F15A24] text-white hover:opacity-90' : 'bg-[#1D1D4B] text-white hover:opacity-90'}`}
+              >
+                <span>Sign Up</span>
+              </button>
+            </>
+          )}
           <button onClick={onGoRoadmap} className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl font-bold text-xs uppercase tracking-[0.15em] transition-all duration-300 ${isDarkMode ? 'bg-[#1a1a1a] text-[#b0b0b0] hover:bg-[#F15A24] hover:text-white' : 'bg-white text-slate-500 hover:bg-[#1D1D4B] hover:text-white'} shadow-sm border ${isDarkMode ? 'border-[#333]' : 'border-slate-200'}`}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
             <span>Roadmap</span>
@@ -665,10 +703,26 @@ const HomePage: React.FC<HomePageProps> = ({
                 Choose Your Path
                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L14 9L21 9L15 14L17 21L12 17L7 21L9 14L3 9L10 9L12 2Z" fill="#FFD700" stroke="#FFA000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </span>
-              <h1 className={`text-5xl md:text-6xl font-black mb-6 tracking-tight leading-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`} style={{ fontFamily: 'Fredoka One, cursive' }}>
-                What would you like <br/>to <span className="text-[#F15A24] relative inline-block" style={{ fontFamily: 'Fredoka One, cursive', animation: 'cartoon-bounce 1s ease-in-out infinite' }}>practice<span className="absolute -bottom-2 left-0 right-0 h-3 bg-[#F15A24]/20 rounded-full -z-10"></span></span> today?
-              </h1>
-              <p className={`text-lg max-w-2xl leading-relaxed ${isDarkMode ? 'text-[#b0b0b0]' : 'opacity-60'}`} style={{ fontFamily: 'Fredoka, sans-serif' }}>Select a test modality below to begin your IELTS test <svg className="inline-block w-8 h-8 align-middle animate-bounce" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="32" cy="28" rx="18" ry="22" fill="#F15A24"/><ellipse cx="32" cy="28" rx="14" ry="18" fill="#FF8A65"/><circle cx="32" cy="24" r="8" fill="white" opacity="0.9"/><circle cx="29" cy="23" r="3" fill="#333"/><circle cx="35" cy="23" r="3" fill="#333"/><path d="M28 30Q32 34 36 30" stroke="#333" strokeWidth="2" strokeLinecap="round" fill="none"/><path d="M18 48L32 58L46 48" fill="#FFD700"/><path d="M22 44L32 52L42 44" fill="#FFB300"/><ellipse cx="26" cy="55" rx="8" ry="4" fill="#4DB6AC"/><ellipse cx="38" cy="55" rx="8" ry="4" fill="#4DB6AC"/></svg></p>
+              {isAuthenticated && user ? (
+                <div className="mb-4">
+                  <p className={`text-lg ${isDarkMode ? 'text-[#b0b0b0]' : 'opacity-60'}`} style={{ fontFamily: 'Fredoka, sans-serif' }}>
+                    Welcome back,
+                  </p>
+                  <h2 className={`text-3xl font-black tracking-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`} style={{ fontFamily: 'Fredoka One, cursive' }}>
+                    {user.displayName}!
+                  </h2>
+                  <div className={`mt-2 inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider ${isDarkMode ? 'bg-[#F15A24]/20 text-[#F15A24]' : 'bg-[#1D1D4B]/10 text-[#1D1D4B]'}`}>
+                    Target: Band {user.targetBandScore.toFixed(1)}
+                  </div>
+                </div>
+              ) : (
+                <h1 className={`text-5xl md:text-6xl font-black mb-6 tracking-tight leading-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`} style={{ fontFamily: 'Fredoka One, cursive' }}>
+                  What would you like <br/>to <span className="text-[#F15A24] relative inline-block" style={{ fontFamily: 'Fredoka One, cursive', animation: 'cartoon-bounce 1s ease-in-out infinite' }}>practice<span className="absolute -bottom-2 left-0 right-0 h-3 bg-[#F15A24]/20 rounded-full -z-10"></span></span> today?
+                </h1>
+              )}
+              {!isAuthenticated && (
+                <p className={`text-lg max-w-2xl leading-relaxed ${isDarkMode ? 'text-[#b0b0b0]' : 'opacity-60'}`} style={{ fontFamily: 'Fredoka, sans-serif' }}>Select a test modality below to begin your IELTS test <svg className="inline-block w-8 h-8 align-middle animate-bounce" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="32" cy="28" rx="18" ry="22" fill="#F15A24"/><ellipse cx="32" cy="28" rx="14" ry="18" fill="#FF8A65"/><circle cx="32" cy="24" r="8" fill="white" opacity="0.9"/><circle cx="29" cy="23" r="3" fill="#333"/><circle cx="35" cy="23" r="3" fill="#333"/><path d="M28 30Q32 34 36 30" stroke="#333" strokeWidth="2" strokeLinecap="round" fill="none"/><path d="M18 48L32 58L46 48" fill="#FFD700"/><path d="M22 44L32 52L42 44" fill="#FFB300"/><ellipse cx="26" cy="55" rx="8" ry="4" fill="#4DB6AC"/><ellipse cx="38" cy="55" rx="8" ry="4" fill="#4DB6AC"/></svg></p>
+              )}
             </div>
             {renderModalityCards()}
           </div>
