@@ -68,7 +68,7 @@ const Login: React.FC<LoginProps> = ({ onSwitchToRegister, onGoHome, theme }) =>
                   ? 'bg-[#252525] border border-[#3a3a3a] text-white focus:border-[#F15A24]' 
                   : 'bg-slate-50 border border-slate-200 text-slate-900 focus:border-slate-900'
               }`}
-              placeholder="your@email.com"
+              placeholder="Email"
               disabled={isLoading}
             />
           </div>
