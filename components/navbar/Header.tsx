@@ -52,7 +52,7 @@ const Header: React.FC<HeaderProps> = ({ timeRemaining, onFinish, theme, onToggl
 
       {/* Right side controls */}
       <div className="flex items-center gap-3">
-        {/* User Profile / Login Button */}
+        {/* Authentication Buttons */}
         {isAuthenticated && user ? (
           <button
             onClick={onGoProfile}
@@ -64,16 +64,26 @@ const Header: React.FC<HeaderProps> = ({ timeRemaining, onFinish, theme, onToggl
             <span className="hidden sm:inline">{user.displayName.split(' ')[0]}</span>
           </button>
         ) : (
-          <button
-            onClick={onGoProfile}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider transition-all ${isDarkMode ? 'bg-[#1a1a1a] text-white hover:bg-[#F15A24] border border-white/10' : 'bg-slate-100 text-slate-700 hover:bg-[#1D1D4B] hover:text-white border border-slate-200'}`}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-              <circle cx="12" cy="7" r="4"/>
-            </svg>
-            <span className="hidden sm:inline">Login</span>
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={onGoProfile}
+              className={`px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider transition-all ${isDarkMode ? 'bg-transparent text-white hover:text-[#F15A24] border border-white/20' : 'bg-transparent text-[#1D1D4B] hover:text-[#F15A24] border border-[#1D1D4B]/20'}`}
+            >
+              Login
+            </button>
+            <button
+              onClick={onGoProfile}
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider transition-all ${isDarkMode ? 'bg-[#F15A24] text-white hover:opacity-90' : 'bg-[#1D1D4B] text-white hover:opacity-90'}`}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="8.5" cy="7" r="4"/>
+                <line x1="20" y1="8" x2="20" y2="14"/>
+                <line x1="23" y1="11" x2="17" y2="11"/>
+              </svg>
+              <span className="hidden sm:inline">Sign Up</span>
+            </button>
+          </div>
         )}
 
         {/* Theme Toggle */}
